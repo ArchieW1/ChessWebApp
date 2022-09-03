@@ -1,0 +1,34 @@
+﻿@inject IBoardService _boardService
+
+<div class="chess-table" style=@($"flex-wrap: wrap{GetReversed}")>
+    @for (int i = 0; i < _boardService.PieceLocations.Length; i++)
+    {
+        <PieceBox Coordinate=@_boardService.PieceLocations[i].Coordinate 
+                  Piece=@_boardService.PieceLocations[i].Piece IsWhite=@IsPieceBoxWhite(i)
+                  OnUpdate="@StateHasChanged"/>
+    }
+</div>
+
+@code
+{
+    [Parameter]
+    public bool Reverse { get; set; }
+    
+    private string GetReversed => Reverse ? "-reverse" : "";
+    
+    private int _count = 0;
+    private bool IsPieceBoxWhite(int i)
+    {
+        if (i % 8 == 0)
+        {
+            _count++;
+        }
+
+        if (_count % 2 == 0)
+        {
+            return i % 2 != 0;
+        }
+        
+        return i % 2 == 0;
+    }
+}

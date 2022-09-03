@@ -1,0 +1,64 @@
+﻿@inject IBoardService _boardService
+
+<div id="@Coordinate" class="piece-box @_colour-box" 
+     @onmouseenter="MouseEnterHandler" @onmouseleave="MouseLeaveHandler" @onclick="ClickHandler">
+    @if (Piece is not null)
+    {
+        <img class="piece" src=@($"img/{Piece}.png") alt=@Piece/>
+    }
+    <span class="piece-box-text">@Coordinate</span>
+</div>
+
+@code
+{
+    [Parameter]
+    public string? Piece { get; set; }
+    
+    [Parameter]
+    public string? Coordinate { get; set; }
+
+    [Parameter]
+    public bool IsWhite { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> OnUpdate { get; set; }
+
+    private string DefaultColour => IsWhite ? "white" : "black";
+    
+    private string _colour = "";
+
+    protected override Task OnInitializedAsync()
+    {
+        _colour = DefaultColour;
+        return Task.CompletedTask;
+    }
+
+    private void MouseEnterHandler(MouseEventArgs e)
+    {
+        _colour = "selected";
+    }
+
+    private void MouseLeaveHandler(MouseEventArgs e)
+    {
+        _colour = DefaultColour;
+    }
+
+    private void ClickHandler(MouseEventArgs e)
+    {
+        if (Coordinate is null)
+        {
+            return;
+        }
+
+        if (_boardService.SelectedPiece is null)
+        {
+            _boardService.SetSelectedByCoordinate(Coordinate);
+        }
+        else
+        {
+            _boardService.ChangeCoordinateToSelected(Coordinate);
+            _boardService.SetSelectedToEmpty();
+            OnUpdate.InvokeAsync(null);
+        }
+    }
+}
