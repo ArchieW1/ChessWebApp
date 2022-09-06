@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ChessWebApp.DbApi.Dtos;
 using ChessWebApp.DbApi.Models;
+using ChessWebApp.Shared.Dtos;
 
 namespace ChessWebApp.DbApi.Profiles;
 

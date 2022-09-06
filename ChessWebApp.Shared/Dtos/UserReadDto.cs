@@ -1,4 +1,4 @@
-﻿namespace ChessWebApp.DbApi.Dtos;
+﻿namespace ChessWebApp.Shared.Dtos;
 
 public class UserReadDto
 {

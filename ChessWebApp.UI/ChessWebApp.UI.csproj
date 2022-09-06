@@ -15,10 +15,18 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
+      <_ContentIncludedByDefault Remove="Shared\Components\Board.razor" />
+      <_ContentIncludedByDefault Remove="Shared\Components\PieceBox.razor" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ChessWebApp.ChessLogic\ChessWebApp.ChessLogic.csproj" />
+      <ProjectReference Include="..\ChessWebApp.Shared\ChessWebApp.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Components\Board.razor" />
+      <AdditionalFiles Include="Components\PieceBox.razor" />
     </ItemGroup>
 
 </Project>

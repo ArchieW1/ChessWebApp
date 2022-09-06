@@ -1,7 +1,7 @@
 using AutoMapper;
 using ChessWebApp.DbApi.DataAccess;
-using ChessWebApp.DbApi.Dtos;
 using ChessWebApp.DbApi.Models;
+using ChessWebApp.Shared.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -32,9 +32,21 @@ app.MapGet("api/users", async (IUserRepo repo, IMapper mapper) =>
     return Results.Ok(mapper.Map<IEnumerable<UserReadDto>>(users));
 });
 
-app.MapGet("api/users/{id}", async (IUserRepo repo, IMapper mapper, Guid id) =>
+app.MapGet("api/users/id/{id}", async (IUserRepo repo, IMapper mapper, Guid id) =>
 {
     User? user = await repo.GetByIdAsync(id);
+    return user is null ? Results.NotFound() : Results.Ok(mapper.Map<UserReadDto>(user));
+});
+
+app.MapGet("api/users/username/{username}", async (IUserRepo repo, IMapper mapper, string username) =>
+{
+    User? user = await repo.GetByUsernameAsync(username);
+    return user is null ? Results.NotFound() : Results.Ok(mapper.Map<UserReadDto>(user));
+});
+
+app.MapGet("api/users/email/{email}", async (IUserRepo repo, IMapper mapper, string email) =>
+{
+    User? user = await repo.GetByEmailAsync(email);
     return user is null ? Results.NotFound() : Results.Ok(mapper.Map<UserReadDto>(user));
 });
 

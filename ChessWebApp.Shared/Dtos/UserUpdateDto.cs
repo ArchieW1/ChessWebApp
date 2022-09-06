@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ChessWebApp.DbApi.Dtos;
+namespace ChessWebApp.Shared.Dtos;
 
 public class UserUpdateDto
 {

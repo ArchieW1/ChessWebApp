@@ -1,4 +1,4 @@
-﻿using ChessWebApp.UI.Shared.Models;
+﻿using ChessWebApp.UI.Models;
 
 namespace ChessWebApp.UI.Services;
 

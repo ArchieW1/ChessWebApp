@@ -1,4 +1,4 @@
-﻿namespace ChessWebApp.UI.Shared.Models;
+﻿namespace ChessWebApp.UI.Models;
 
 public class CoordinatePiece
 {
