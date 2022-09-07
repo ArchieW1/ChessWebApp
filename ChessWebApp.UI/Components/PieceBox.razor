@@ -1,4 +1,5 @@
-﻿@inject IBoardService _boardService
+﻿@using ChessWebApp.UI.Services
+@inject IBoardService _boardService
 
 <div id="@Coordinate" class="piece-box @_colour-box" 
      @onmouseenter="MouseEnterHandler" @onmouseleave="MouseLeaveHandler" @onclick="ClickHandler">

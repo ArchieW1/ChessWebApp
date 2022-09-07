@@ -1,4 +1,5 @@
-﻿@inject IBoardService _boardService
+﻿@using ChessWebApp.UI.Services
+@inject IBoardService _boardService
 
 <div class="chess-table" style=@($"flex-wrap: wrap{GetReversed}")>
     @for (int i = 0; i < _boardService.PieceLocations.Length; i++)
