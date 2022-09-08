@@ -1,7 +1,17 @@
-﻿@page "/login"
+﻿@inject IUserService _userService
 
-<h3>Login</h3>
+@page "/login"
+
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="/register">Create an account</a></p>
+    </form>
+  </div>
+</div>
 
 @code {
-    
 }

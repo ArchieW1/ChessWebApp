@@ -1,4 +1,5 @@
-﻿using ChessWebApp.Shared.Dtos;
+﻿using System.Net.Http.Json;
+using ChessWebApp.Shared.Dtos;
 
 namespace ChessWebApp.UI.Services;
 
@@ -11,23 +12,28 @@ public class UserService : IUserService
         _httpClient = httpClient;
     }
 
-    public Task<UserReadDto?> GetByIdAsync(Guid id)
+    public async Task<UserReadDto?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _httpClient.GetFromJsonAsync<UserReadDto>($"api/users/id/{id.ToString()}");
+    }
+    
+    public async Task<UserReadDto?> GetByUsernameAsync(string username)
+    {
+        return await _httpClient.GetFromJsonAsync<UserReadDto>($"api/users/username/{username}");
     }
 
-    public Task<IEnumerable<UserReadDto>> GetAllAsync()
+    public async Task<IEnumerable<UserReadDto>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _httpClient.GetFromJsonAsync<IEnumerable<UserReadDto>>($"api/users");
     }
 
-    public Task CreateAsync(UserCreateDto user)
+    public async Task CreateAsync(UserCreateDto user)
     {
-        throw new NotImplementedException();
+        await _httpClient.PostAsJsonAsync("api/users", user);
     }
 
     public void Delete(Guid id)
     {
-        throw new NotImplementedException();
+        _httpClient.DeleteAsync($"api/users/{id.ToString()}");
     }
 }
