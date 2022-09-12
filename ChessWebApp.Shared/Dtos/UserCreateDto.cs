@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.Shared.Dtos;
 
-public class UserCreateDto
+public sealed class UserCreateDto
 {
     [Required]
     [MaxLength(20)]

@@ -1,6 +1,6 @@
 ﻿namespace ChessWebApp.UI.Models;
 
-public class CoordinatePiece
+public sealed class CoordinatePiece
 {
     public string Coordinate { get; set; }
     public string? Piece { get; set; }

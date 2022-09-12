@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.DbApi.Models;
 
-public class User
+public sealed class User
 {
     [Key]
     public Guid Id { get; set; }

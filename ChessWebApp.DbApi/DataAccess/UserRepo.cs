@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChessWebApp.DbApi.DataAccess;
 
-public class UserRepo : IUserRepo
+public sealed class UserRepo : IUserRepo
 {
     private readonly AppDbContext _dbContext;
 

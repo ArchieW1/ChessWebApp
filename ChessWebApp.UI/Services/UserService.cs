@@ -3,7 +3,7 @@ using ChessWebApp.Shared.Dtos;
 
 namespace ChessWebApp.UI.Services;
 
-public class UserService : IUserService
+public sealed class UserService : IUserService
 {
     private readonly HttpClient _httpClient;
 

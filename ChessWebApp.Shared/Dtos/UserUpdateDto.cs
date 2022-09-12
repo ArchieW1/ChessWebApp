@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.Shared.Dtos;
 
-public class UserUpdateDto
+public sealed class UserUpdateDto
 {
     [Required]
     [MaxLength(20)]

@@ -4,7 +4,7 @@ using ChessWebApp.Shared.Dtos;
 
 namespace ChessWebApp.DbApi.Profiles;
 
-public class UsersProfile : Profile
+public sealed class UsersProfile : Profile
 {
     public UsersProfile()
     {

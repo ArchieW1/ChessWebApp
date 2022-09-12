@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.UI.Services;
 
-public class BoardService : IBoardService
+public sealed class BoardService : IBoardService
 {
     public CoordinatePiece[] PieceLocations { get; set; } =
     {

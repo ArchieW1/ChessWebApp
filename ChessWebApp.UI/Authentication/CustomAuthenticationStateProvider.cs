@@ -4,7 +4,7 @@ using ProtectedLocalStore;
 
 namespace ChessWebApp.UI.Authentication;
 
-public class CustomAuthenticationStateProvider : AuthenticationStateProvider
+public sealed class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ProtectedLocalStorage _localStorage;
     private ClaimsPrincipal _anonymous = new(new ClaimsIdentity());
