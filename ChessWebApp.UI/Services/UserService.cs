@@ -22,6 +22,11 @@ public sealed class UserService : IUserService
         return await _httpClient.GetFromJsonAsync<UserReadDto>($"api/users/username/{username}");
     }
 
+    public async Task<UserReadPasswordDto?> GetByUsernamePasswordAsync(string username, string password)
+    {
+        return await _httpClient.GetFromJsonAsync<UserReadPasswordDto>($"api/users/username/{username}/{password}");
+    }
+
     public async Task<IEnumerable<UserReadDto>?> GetAllAsync()
     {
         return await _httpClient.GetFromJsonAsync<IEnumerable<UserReadDto>>($"api/users");

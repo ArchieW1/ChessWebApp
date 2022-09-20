@@ -27,6 +27,11 @@ public sealed class UserRepo : IUserRepo
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == username);
     }
     
+    public async Task<User?> GetByUsernamePasswordAsync(string username, string password)
+    {
+        return await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+    }
+    
     public async Task<User?> GetByEmailAsync(string email)
     {
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);

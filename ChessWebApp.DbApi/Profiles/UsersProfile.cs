@@ -10,6 +10,7 @@ public sealed class UsersProfile : Profile
     {
         // Source->Target
         CreateMap<User, UserReadDto>();
+        CreateMap<User, UserReadPasswordDto>();
         CreateMap<UserCreateDto, User>();
         CreateMap<UserUpdateDto, User>();
     }

@@ -7,7 +7,7 @@ namespace ChessWebApp.UI.Authentication;
 public sealed class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ProtectedLocalStorage _localStorage;
-    private ClaimsPrincipal _anonymous = new(new ClaimsIdentity());
+    private readonly ClaimsPrincipal _anonymous = new(new ClaimsIdentity());
 
     public CustomAuthenticationStateProvider(ProtectedLocalStorage localStorage)
     {
