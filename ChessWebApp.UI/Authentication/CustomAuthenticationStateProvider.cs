@@ -19,7 +19,7 @@ public sealed class CustomAuthenticationStateProvider : AuthenticationStateProvi
         try
         {
             UserSession? userSession = await _localStorage.GetItemAsync<UserSession>("UserSession");
-            if (userSession is null)
+            if (userSession is null || userSession.Username is null || userSession.Role is null)
             {
                 return await Task.FromResult(new AuthenticationState(_anonymous));
             }
@@ -41,7 +41,7 @@ public sealed class CustomAuthenticationStateProvider : AuthenticationStateProvi
     {
         ClaimsPrincipal claimsPrincipal;
 
-        if (userSession is not null)
+        if (userSession is not null && userSession.Username is not null && userSession.Role is not null)
         {
             await _localStorage.SetItemAsync("UserSession", userSession);
             claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
