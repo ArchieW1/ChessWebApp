@@ -1,4 +1,4 @@
-﻿namespace ChessWebApp.Api.Contracts.Data;
+﻿namespace ChessWebApp.Shared.Contracts;
 
 public sealed class UserDto
 {
@@ -10,7 +10,7 @@ public sealed class UserDto
 
     public string Password { get; init; } = default!;
 
-    public int Wins { get; init; } = default!;
+    public int Wins { get; init; }
 
-    public int Losses { get; set; } = default!;
+    public int Losses { get; set; }
 }
