@@ -8,7 +8,7 @@ public sealed class Wins : ValueOf<int, Wins>
     {
         if (Value < 0)
         {
-            throw new ArgumentException("Wins cannot be less than 0.", nameof(UserId));
+            throw new ArgumentException("Wins cannot be less than 0.", nameof(Wins));
         }
     }
 }

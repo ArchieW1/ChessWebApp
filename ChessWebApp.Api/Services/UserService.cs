@@ -18,10 +18,10 @@ public sealed class UserService : IUserService
 
     public async Task<bool> CreateAsync(User user)
     {
-        UserDto? existingUser = await _userRepository.GetAsync(user.Id.Value);
+        UserDto? existingUser = await _userRepository.GetAsync(user.Username.Value);
         if (existingUser is not null)
         {
-            string message = $"A user with id {user.Id} already exists";
+            string message = $"A user with name {user.Username} already exists";
             throw new ValidationException(message, new []
             {
                 new ValidationFailure(nameof(User), message)
@@ -32,9 +32,9 @@ public sealed class UserService : IUserService
         return await _userRepository.CreateAsync(userDto);
     }
 
-    public async Task<User?> GetAsync(Guid id)
+    public async Task<User?> GetAsync(string username)
     {
-        UserDto? userDto = await _userRepository.GetAsync(id);
+        UserDto? userDto = await _userRepository.GetAsync(username);
         return userDto?.ToUser();
     }
 
@@ -50,8 +50,8 @@ public sealed class UserService : IUserService
         return await _userRepository.UpdateAsync(userDto);
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(string username)
     {
-        return await _userRepository.DeleteAsync(id);
+        return await _userRepository.DeleteAsync(username);
     }
 }

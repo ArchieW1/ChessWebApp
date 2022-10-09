@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ChessWebApp.Api.Endpoints;
 
-[HttpDelete("users/{id:guid}"), AllowAnonymous]
+[HttpDelete("users/{username}"), AllowAnonymous]
 public sealed class DeleteUserEndpoint : Endpoint<DeleteUserRequest>
 {
     private readonly IUserService _userService;
@@ -17,7 +17,7 @@ public sealed class DeleteUserEndpoint : Endpoint<DeleteUserRequest>
 
     public override async Task HandleAsync(DeleteUserRequest req, CancellationToken ct)
     {
-        bool deleted = await _userService.DeleteAsync(req.Id);
+        bool deleted = await _userService.DeleteAsync(req.Username);
         if (!deleted)
         {
             await SendNotFoundAsync(ct);

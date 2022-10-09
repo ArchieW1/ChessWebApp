@@ -9,7 +9,6 @@ public static class DomainToDtoMapper
     {
         return new UserDto
         {
-            Id = user.Id.Value.ToString(),
             Email = user.Email.Value,
             Username = user.Username.Value,
             Password = user.Password.Value,

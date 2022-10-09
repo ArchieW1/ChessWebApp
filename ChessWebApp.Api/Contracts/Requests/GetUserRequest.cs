@@ -1,6 +1,6 @@
 ﻿namespace ChessWebApp.Api.Contracts.Requests;
 
-public sealed class GetCustomerRequest
+public sealed class GetUserRequest
 {
-    public Guid Id { get; init; }
+    public string Username { get; init; }
 }

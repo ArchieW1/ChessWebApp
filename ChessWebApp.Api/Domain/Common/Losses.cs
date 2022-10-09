@@ -8,7 +8,7 @@ public sealed class Losses : ValueOf<int, Losses>
     {
         if (Value < 0)
         {
-            throw new ArgumentException("Losses cannot be less than 0.", nameof(UserId));
+            throw new ArgumentException("Losses cannot be less than 0.", nameof(Losses));
         }
     }
 }

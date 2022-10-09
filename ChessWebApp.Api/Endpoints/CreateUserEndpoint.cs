@@ -26,6 +26,6 @@ public sealed class CreateUserEndpoint : Endpoint<CreateUserRequest, UserRespons
 
         UserResponse userResponse = user.ToUserResponse();
         await SendCreatedAtAsync<GetUserEndpoint>(
-            new { Id = user.Id.Value }, userResponse, generateAbsoluteUrl: true, cancellation: ct);
+            new { Username = user.Username.Value }, userResponse, generateAbsoluteUrl: true, cancellation: ct);
     }
 }

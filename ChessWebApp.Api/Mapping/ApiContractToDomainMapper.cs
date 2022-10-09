@@ -10,7 +10,6 @@ public static class ApiContractToDomainMapper
     {
         return new User
         {
-            Id = UserId.From(Guid.NewGuid()),
             Email = EmailAddress.From(request.Email),
             Username = Username.From(request.Username),
             Password = Password.From(request.Password),
@@ -23,7 +22,6 @@ public static class ApiContractToDomainMapper
     {
         return new User
         {
-            Id = UserId.From(request.Id),
             Email = EmailAddress.From(request.Email),
             Username = Username.From(request.Username),
             Password = Password.From(request.Password),

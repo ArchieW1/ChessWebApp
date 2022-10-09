@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using ChessWebApp.Api.Database;
+using ChessWebApp.Api.Domain.Common;
 using ChessWebApp.Shared.Contracts;
 using Dapper;
 
@@ -20,7 +21,6 @@ public sealed class UserRepository : IUserRepository
         int result = await connection.ExecuteAsync(
            @"INSERT INTO Users
                 (
-                    Id,
                     Username,
                     Password,
                     Email,
@@ -28,12 +28,12 @@ public sealed class UserRepository : IUserRepository
                     Losses
                 )
                 VALUES
-                (@Id, @Username, @Password, @Email, @Wins, @Losses)",
+                (@Username, @Password, @Email, @Wins, @Losses)",
             user);
         return result > 0;
     }
 
-    public async Task<UserDto?> GetAsync(Guid id)
+    public async Task<UserDto?> GetAsync(string username)
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         return await connection.QuerySingleOrDefaultAsync<UserDto>(
@@ -42,8 +42,8 @@ public sealed class UserRepository : IUserRepository
                 FROM
                    Users 
                 WHERE
-                   Id = @Id LIMIT 1",
-            new { Id = id.ToString() });
+                   Username = @Username LIMIT 1",
+            new { Username = username });
     }
 
     public async Task<IEnumerable<UserDto>> GetAllAsync()
@@ -66,12 +66,12 @@ public sealed class UserRepository : IUserRepository
                 SET
                    Username = @Username, Password = @Password, Email = @Email, Wins = @Wins, Losses = @Losses
                 WHERE
-                   Id = @Id",
+                   Username = @Username",
             user);
         return result > 0;
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(string username)
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         int result = await connection.ExecuteAsync(
@@ -79,8 +79,8 @@ public sealed class UserRepository : IUserRepository
                 FROM
                    Users 
                 WHERE
-                   Id = @Id",
-            new {Id = id.ToString()});
+                   Username = @Username",
+            new {Username = username});
         return result > 0;
     }
 }

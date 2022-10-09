@@ -17,8 +17,7 @@ public sealed class DatabaseInitializer
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         await connection.ExecuteAsync(
        @"CREATE TABLE IF NOT EXISTS Users (
-              Id CHAR(36) PRIMARY KEY, 
-              Username TEXT NOT NULL, 
+              Username TEXT PRIMARY KEY, 
               Email TEXT NOT NULL,
               Password TEXT NOT NULL, 
               Wins INTEGER NOT NULL,

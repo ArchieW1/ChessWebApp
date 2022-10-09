@@ -9,7 +9,6 @@ public static class DomainToApiContractMapper
     {
         return new UserResponse
         {
-            Id = user.Id.Value,
             Email = user.Email.Value,
             Username = user.Username.Value,
             Password = user.Password.Value,
@@ -24,7 +23,6 @@ public static class DomainToApiContractMapper
         {
             Customers = customers.Select(user => new UserResponse
             {
-                Id = user.Id.Value,
                 Email = user.Email.Value,
                 Username = user.Username.Value,
                 Password = user.Password.Value,

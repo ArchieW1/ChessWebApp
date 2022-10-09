@@ -10,7 +10,6 @@ public static class DtoToDomainMapper
     {
         return new User
         {
-            Id = UserId.From(Guid.Parse(userDto.Id)),
             Email = EmailAddress.From(userDto.Email),
             Username = Username.From(userDto.Username),
             Password = Password.From(userDto.Password),

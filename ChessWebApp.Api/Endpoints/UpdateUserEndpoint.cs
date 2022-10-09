@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ChessWebApp.Api.Endpoints;
 
-[HttpPut("users/{id:guid}"), AllowAnonymous]
+[HttpPut("users/{username}"), AllowAnonymous]
 public sealed class UpdateUserEndpoint : Endpoint<UpdateUserRequest, UserResponse>
 {
     private readonly IUserService _userService;
@@ -20,7 +20,7 @@ public sealed class UpdateUserEndpoint : Endpoint<UpdateUserRequest, UserRespons
 
     public override async Task HandleAsync(UpdateUserRequest req, CancellationToken ct)
     {
-        User? existingUser = await _userService.GetAsync(req.Id);
+        User? existingUser = await _userService.GetAsync(req.Username);
 
         if (existingUser is null)
         {
