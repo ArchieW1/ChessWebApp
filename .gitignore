@@ -404,4 +404,4 @@ FodyWeavers.xsd
 
 .vscode
 
-user.db
+*.db
