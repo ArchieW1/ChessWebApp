@@ -1,10 +1,18 @@
-﻿@page "/"
+@page "/"
 
-<PageTitle>Chess</PageTitle>
+<div class="index-page">
+  	<input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+  	<label for="menu-icon"></label>
+  	<nav class="nav"> 		
+  		<ul class="pt-5">
+  			<li><a href="/login">Login/Sign up</a></li>
+  			<li><a href="#">Online Game</a></li>
+  			<li><a href="/offline">Offline Game</a></li>
+  			<li><a href="#">Search Players</a></li>
+  		</ul>
+  	</nav>
 
-<Board/>
-    
-<div class="chess-message">
-    <div class="black-wins check-mate-message fade-in">Black Wins</div>
-    <div class="white-wins check-mate-message fade-in">White Wins</div>
+  	<div class="section-center">
+  		<h1 class="mb-0">Chess</h1>
+  	</div>
 </div>

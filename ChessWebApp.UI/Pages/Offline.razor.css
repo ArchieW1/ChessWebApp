@@ -1,0 +1,76 @@
+﻿* {
+    user-select: none;
+}
+
+.offline-page{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 4%;
+  background-color: #1f2029;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease
+}
+
+/** #################################### */
+
+.chess-message .check-mate-message {
+    position: absolute;
+    width: 200px;
+    left: calc(-142px + 50vw);
+    top: calc(-10px + 50vh);
+    text-align: center;
+    padding: 10px 50px;
+}
+
+.chess-message .black-wins {
+    display: none;
+    background: black;
+    color: white;
+    box-shadow: 0 0 150px 75px white;
+}
+
+.chess-message .white-wins {
+    display: none;
+    background: white;
+    color: black;
+    box-shadow: 0 0 150px 75px black;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    .chess-message .check-mate-message {
+        width: 150px;
+        top: calc(-15px + 50vh);
+        left: calc(-85px + 50vw);
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-device-width: 560px) and (max-device-width: 820px) and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+        padding: 50px 0;
+    }
+
+    .chess-message .check-mate-message {
+        width: 175px;
+        top: calc(35px + 50vh);
+        left: calc(-127.5px + 50vw);
+        font-size: 14px;
+        padding: 10px 40px;
+    }
+}

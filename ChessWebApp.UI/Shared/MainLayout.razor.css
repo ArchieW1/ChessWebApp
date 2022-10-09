@@ -1,0 +1,13 @@
+.logo {
+	position: absolute;
+	top: 60px;
+	left: 50px;
+	display: block;
+	z-index: 11;
+	transition: all 250ms linear;
+}
+.logo img {
+	height: 52px;
+	width: auto;
+	display: block;
+}
