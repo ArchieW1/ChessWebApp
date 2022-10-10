@@ -1,7 +1,7 @@
-﻿using ChessWebApp.Api.Domain;
+﻿using ChessWebApp.Api.Contracts.Data;
+using ChessWebApp.Api.Domain;
 using ChessWebApp.Api.Mapping;
 using ChessWebApp.Api.Repositories;
-using ChessWebApp.Shared.Contracts;
 using FluentValidation;
 using FluentValidation.Results;
 

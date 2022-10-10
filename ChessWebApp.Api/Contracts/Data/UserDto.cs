@@ -1,9 +1,7 @@
-﻿namespace ChessWebApp.Shared.Contracts;
+﻿namespace ChessWebApp.Api.Contracts.Data;
 
 public sealed class UserDto
 {
-    public string Id { get; init; } = default!;
-
     public string Username { get; init; } = default!;
     
     public string Email { get; init; } = default!;

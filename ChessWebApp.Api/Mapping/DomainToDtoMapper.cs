@@ -1,5 +1,5 @@
-﻿using ChessWebApp.Api.Domain;
-using ChessWebApp.Shared.Contracts;
+﻿using ChessWebApp.Api.Contracts.Data;
+using ChessWebApp.Api.Domain;
 
 namespace ChessWebApp.Api.Mapping;
 

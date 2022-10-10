@@ -7,10 +7,10 @@
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
 	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
-  background-position: center;
-  background-repeat: repeat;
-  background-size: 4%;
-  background-color: #1f2029;
+	background-position: center;
+	background-repeat: repeat;
+	background-size: 4%;
+	background-color: #1f2029;
 }
 .main{
 	width: 350px;
@@ -39,29 +39,39 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
-input{
-	width: 60%;
-	height: 30px;
-	background: #e0dede;
+.input-container{
 	justify-content: center;
 	display: flex;
-	margin: 20px auto;
-	padding: 10px;
+	width: 60%;
+	margin: 10px auto;
 	border: none;
 	outline: none;
-	border-radius: 5px;
 }
+
+.validation-container{
+	justify-content: center;
+	display: flex;
+	margin: 10px auto;
+	border: none;
+	outline: none;
+	font-size: 0.75rem;
+}
+
+.input-text{
+	padding: 10px;
+	height: 30px;
+}
+
 button{
 	width: 60%;
 	height: 40px;
-	margin: 10px auto;
 	justify-content: center;
 	display: block;
 	color: #fff;
 	background: #573b8a;
 	font-size: 1em;
 	font-weight: bold;
-	margin-top: 20px;
+	margin: 20px auto 10px;
 	outline: none;
 	border: none;
 	border-radius: 5px;

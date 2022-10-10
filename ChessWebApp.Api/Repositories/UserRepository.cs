@@ -1,7 +1,7 @@
 ﻿using System.Data;
+using ChessWebApp.Api.Contracts.Data;
 using ChessWebApp.Api.Database;
 using ChessWebApp.Api.Domain.Common;
-using ChessWebApp.Shared.Contracts;
 using Dapper;
 
 namespace ChessWebApp.Api.Repositories;

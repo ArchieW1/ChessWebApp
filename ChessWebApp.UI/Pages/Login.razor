@@ -1,50 +1,86 @@
-﻿@inject IUserService _userService
-
-@page "/login"
+﻿@page "/login"
 
 <div class="login-page">
   
 	<div class="main">
 		<input type="checkbox" id="chk" aria-hidden="true">
 
-			<div class="signup">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="txt" placeholder="User name" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Sign up</button>
-				</form>
-			</div>
+		<div class="signup">
+			<EditForm Model="@_userSignupModel" OnValidSubmit="OnValidSignupSubmit">
+				<label for="chk" aria-hidden="true">Sign up</label>
+				
+				<DataAnnotationsValidator/>
+				<div class="input-container">
+					<InputText class="input-text" type="text" @bind-Value="_userSignupModel.Username" placeholder="User name"/>
+				</div>
+				<div class="validation-container">
+                    <ValidationMessage For="() => _userSignupModel.Username"/>
+                </div>
+				
+				<div class="input-container">
+					<InputText class="input-text" type="email" @bind-Value="_userSignupModel.Email" placeholder="Email"/>
+				</div>
+				<div class="validation-container">
+                	<ValidationMessage For="() => _userSignupModel.Email"/>
+                </div>
+				
+				<div class="input-container">
+					<InputText class="input-text" type="password" @bind-Value="_userSignupModel.Password" placeholder="Password"/>
+				</div>
+				<div class="validation-container">
+                    <ValidationMessage For="() => _userSignupModel.Password"/>
+                </div>
+				
+				<button type="submit">Sign Up</button>
+			</EditForm>
+		</div>
 
-			<div class="login">
-				<form>
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
-				</form>
-			</div>
+		<div class="login">
+			<EditForm Model="@_userLoginModel" OnValidSubmit="OnValidLoginSubmit">
+				<DataAnnotationsValidator/>
+				<label for="chk" aria-hidden="true">Login</label>
+				
+				@if (_loginFailed)
+				{
+					<div class="validation-container">
+						<p style="color: red">User name or password was invalid.</p>
+					</div>
+				}
+				
+            	<div class="input-container">
+            		<InputText class="input-text" type="text" @bind-Value="_userLoginModel.Username" placeholder="User name"/>
+            	</div>
+            	<div class="validation-container">
+                    <ValidationMessage For="() => _userLoginModel.Username"/>
+                </div>
+            	
+            	<div class="input-container">
+            		<InputText class="input-text" type="password" @bind-Value="_userLoginModel.Password" placeholder="Password"/>
+            	</div>
+            	<div class="validation-container">
+                    <ValidationMessage For="() => _userLoginModel.Password"/>
+                </div>
+            	
+            	<button type="submit">Login</button>
+            </EditForm>
+		</div>
 	</div>
 </div>
 
 
 @code {
+	private readonly UserSignupModel _userSignupModel = new();
+	private readonly UserLoginModel _userLoginModel = new();
+	
+	private bool _loginFailed;
 
-  private string? _username;
-  private string? _password;
-
-  private async Task OnLogin()
-  {
-    if (string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password))
-    {
-      return;
-    }
-
-    if (await _userService.GetByUsernamePasswordAsync(_username, _password) is not null)
-    {
-      
-    }
-  }
-
+	private void OnValidLoginSubmit()
+	{
+		_loginFailed = true;
+	}
+	
+	private void OnValidSignupSubmit()
+	{
+		throw new NotImplementedException();
+	}
 }

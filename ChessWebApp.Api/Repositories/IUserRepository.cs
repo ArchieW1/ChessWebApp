@@ -1,4 +1,4 @@
-﻿using ChessWebApp.Shared.Contracts;
+﻿using ChessWebApp.Api.Contracts.Data;
 
 namespace ChessWebApp.Api.Repositories;
 

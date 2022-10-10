@@ -8,7 +8,7 @@ namespace ChessWebApp.Api.Domain.Common;
 public sealed class Username : ValueOf<string, Username>
 {
     private static readonly Regex UsernameRegex =
-        new("^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        new("^([a-zA-Z0-9]+){0,30}$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     protected override void Validate()
     {
