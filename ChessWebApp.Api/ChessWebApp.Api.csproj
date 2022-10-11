@@ -14,8 +14,4 @@
         <PackageReference Include="Dapper" Version="2.0.123" />
         <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.4" />
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\ChessWebApp.Shared\ChessWebApp.Shared.csproj" />
-    </ItemGroup>
 </Project>

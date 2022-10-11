@@ -7,19 +7,28 @@ using FastEndpoints;
 using FastEndpoints.Swagger;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-ConfigurationManager builderConfiguration = builder.Configuration;
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+        {
+            policy.AllowAnyOrigin()// note the port is included 
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerDoc();
 
 builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
-    new SqliteConnectionFactory(builderConfiguration.GetValue<string>("Database:ConnectionString")));
+    new SqliteConnectionFactory(builder.Configuration.GetValue<string>("Database:ConnectionString")));
 builder.Services.AddSingleton<DatabaseInitializer>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<IUserService, UserService>();
 
 WebApplication app = builder.Build();
 
+app.UseCors();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 app.UseFastEndpoints(config =>
 {

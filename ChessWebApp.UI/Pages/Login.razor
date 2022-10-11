@@ -1,4 +1,6 @@
-﻿@page "/login"
+﻿@inject IUserService _userService;
+
+@page "/login"
 
 <div class="login-page">
   
@@ -6,8 +8,15 @@
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 		<div class="signup">
-			<EditForm Model="@_userSignupModel" OnValidSubmit="OnValidSignupSubmit">
+			<EditForm Model="@_userSignupModel" OnValidSubmit="OnValidSignupSubmitAsync">
 				<label for="chk" aria-hidden="true">Sign up</label>
+				
+				@if (_signupFailed)
+                {
+                	<div class="validation-container">
+                		<p style="color: red">@(_signupFailResponseMessage ?? "Invalid Details.")</p>
+                	</div>
+                }
 				
 				<DataAnnotationsValidator/>
 				<div class="input-container">
@@ -36,7 +45,7 @@
 		</div>
 
 		<div class="login">
-			<EditForm Model="@_userLoginModel" OnValidSubmit="OnValidLoginSubmit">
+			<EditForm Model="@_userLoginModel" OnValidSubmit="OnValidLoginSubmitAsync">
 				<DataAnnotationsValidator/>
 				<label for="chk" aria-hidden="true">Login</label>
 				
@@ -73,14 +82,31 @@
 	private readonly UserLoginModel _userLoginModel = new();
 	
 	private bool _loginFailed;
+	private bool _signupFailed;
+	private string? _signupFailResponseMessage;
 
-	private void OnValidLoginSubmit()
+	private async Task OnValidLoginSubmitAsync()
 	{
-		_loginFailed = true;
+		UserModel? user = await _userService.GetAsync(_userLoginModel.Username);
+		if (user is null || user.Password != _userLoginModel.Password)
+		{
+			_loginFailed = true;
+		}
 	}
 	
-	private void OnValidSignupSubmit()
+	private async Task OnValidSignupSubmitAsync()
 	{
-		throw new NotImplementedException();
+		HttpResponseMessage response = await _userService.CreateAsync(new UserModel
+		{
+			Username = _userSignupModel.Username,
+			Email = _userSignupModel.Email,
+			Password = _userSignupModel.Password
+		});
+
+		if (!response.IsSuccessStatusCode)
+		{
+			_signupFailed = true;
+			_signupFailResponseMessage = response.ReasonPhrase;
+		}
 	}
 }

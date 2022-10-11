@@ -13,8 +13,4 @@
     <PackageReference Include="MyBlazor.MangmentBrowserStorage" Version="1.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ChessWebApp.Shared\ChessWebApp.Shared.csproj" />
-  </ItemGroup>
-
 </Project>
