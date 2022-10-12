@@ -41,7 +41,7 @@ public sealed class CustomAuthenticationStateProvider : AuthenticationStateProvi
     {
         ClaimsPrincipal claimsPrincipal;
 
-        if (userSession?.Username != null && userSession.Role is not null)
+        if (userSession is { Username: not null, Role: not null })
         {
             await _localStorage.SetItemAsync("UserSession", userSession);
             claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>

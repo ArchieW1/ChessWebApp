@@ -28,7 +28,7 @@ public sealed class UserService : IUserService
             });
         }
 
-        UserDto userDto = user.ToCustomerDto();
+        UserDto userDto = user.ToUserDto();
         return await _userRepository.CreateAsync(userDto);
     }
 
@@ -46,7 +46,7 @@ public sealed class UserService : IUserService
 
     public async Task<bool> UpdateAsync(User user)
     {
-        UserDto userDto = user.ToCustomerDto();
+        UserDto userDto = user.ToUserDto();
         return await _userRepository.UpdateAsync(userDto);
     }
 

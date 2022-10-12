@@ -6,9 +6,9 @@ public sealed class UserResponse
     
     public string Email { get; init; } = default!;
 
-    public string Password { get; set; } = default!;
+    public string Password { get; init; } = default!;
 
     public int Wins { get; init; } = default!;
 
-    public int Losses { get; set; } = default!;
+    public int Losses { get; init; } = default!;
 }

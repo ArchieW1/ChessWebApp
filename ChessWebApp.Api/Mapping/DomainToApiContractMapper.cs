@@ -17,7 +17,7 @@ public static class DomainToApiContractMapper
         };
     }
 
-    public static GetAllUsersResponse ToCustomersResponse(this IEnumerable<User> customers)
+    public static GetAllUsersResponse ToUsersResponse(this IEnumerable<User> customers)
     {
         return new GetAllUsersResponse
         {

@@ -2,5 +2,5 @@
 
 public sealed class DeleteUserRequest
 {
-    public string Username { get; init; }
+    public string Username { get; init; } = default!;
 }

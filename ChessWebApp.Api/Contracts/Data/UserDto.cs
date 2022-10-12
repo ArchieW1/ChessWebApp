@@ -10,5 +10,5 @@ public sealed class UserDto
 
     public int Wins { get; init; }
 
-    public int Losses { get; set; }
+    public int Losses { get; init; }
 }

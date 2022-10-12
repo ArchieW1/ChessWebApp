@@ -10,5 +10,5 @@ public sealed class UpdateUserRequest
 
     public int Wins { get; init; } = default!;
 
-    public int Losses { get; set; } = default!;
+    public int Losses { get; init; } = default!;
 }

@@ -20,7 +20,7 @@ public sealed class GetAllUsersEndpoint : EndpointWithoutRequest<GetAllUsersResp
     public override async Task HandleAsync(CancellationToken ct)
     {
         IEnumerable<User> users = await _userService.GetAllAsync();
-        GetAllUsersResponse usersResponse = users.ToCustomersResponse();
+        GetAllUsersResponse usersResponse = users.ToUsersResponse();
         await SendOkAsync(usersResponse, ct);
     }
 }

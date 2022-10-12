@@ -2,5 +2,5 @@
 
 public sealed class GetUserRequest
 {
-    public string Username { get; init; }
+    public string Username { get; init; } = default!;
 }

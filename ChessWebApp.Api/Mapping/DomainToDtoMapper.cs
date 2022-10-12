@@ -5,7 +5,7 @@ namespace ChessWebApp.Api.Mapping;
 
 public static class DomainToDtoMapper
 {
-    public static UserDto ToCustomerDto(this User user)
+    public static UserDto ToUserDto(this User user)
     {
         return new UserDto
         {

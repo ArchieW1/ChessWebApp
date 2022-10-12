@@ -3,39 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap");
 
-/* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background: #312e2b;
-    margin: 0;
-    padding: 0;
-} */
-
-/* html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-} */
-
-/* h1:focus {
-    outline: none;
-}
-
-a, .btn-link {
-    color: #0071c1;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-} */
-
-/* .content {
-    padding-top: 1.1rem;
-} */
-
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
