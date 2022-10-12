@@ -14,7 +14,7 @@
 				@if (_signupFailed)
                 {
                 	<div class="validation-container">
-                		<p style="color: red">@(_signupFailResponseMessage ?? "Invalid Details.")</p>
+                		<p style="color: red">User name is taken.</p>
                 	</div>
                 }
 				
@@ -83,7 +83,6 @@
 	
 	private bool _loginFailed;
 	private bool _signupFailed;
-	private string? _signupFailResponseMessage;
 
 	private async Task OnValidLoginSubmitAsync()
 	{
@@ -106,7 +105,6 @@
 		if (!response.IsSuccessStatusCode)
 		{
 			_signupFailed = true;
-			_signupFailResponseMessage = response.ReasonPhrase;
 		}
 	}
 }

@@ -20,15 +20,7 @@ public sealed class UserService : IUserService
 
     public async Task<UserModel?> GetAsync(string name)
     {
-        try
-        {
-            return await _httpClient.GetFromJsonAsync<UserModel>($"users/{name}");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            return null;
-        }
+        return await _httpClient.GetFromJsonAsync<UserModel>($"users/{name}");
     }
 
     public async Task<HttpResponseMessage> CreateAsync(UserModel user)
