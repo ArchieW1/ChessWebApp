@@ -16,12 +16,13 @@ public sealed class DatabaseInitializer
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         await connection.ExecuteAsync(
-       @"CREATE TABLE IF NOT EXISTS Users (
-              Username TEXT PRIMARY KEY, 
-              Email TEXT NOT NULL,
-              Password TEXT NOT NULL, 
-              Wins INTEGER NOT NULL,
-              Losses INTEGER NOT NULL
-            )");
+            @"CREATE TABLE IF NOT EXISTS Users
+              (
+                  Username TEXT PRIMARY KEY, 
+                  Email TEXT NOT NULL,
+                  Password TEXT NOT NULL, 
+                  Wins INTEGER NOT NULL,
+                  Losses INTEGER NOT NULL
+              )");
     }
 }

@@ -9,7 +9,8 @@ public sealed class EmailAddress : ValueOf<string, EmailAddress>
 {
     private static readonly Regex EmailRegex =
         new("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$",
-            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.ExplicitCapture,
+            TimeSpan.FromMilliseconds(50));
 
     protected override void Validate()
     {

@@ -4,9 +4,9 @@ namespace ChessWebApp.UI.Models;
 
 public sealed class UserLoginModel
 {
-    [Required]
+    [Required(ErrorMessage = "Please complete field.")]
     public string Username { get; set; } = default!;
     
-    [Required]
+    [Required(ErrorMessage = "Please complete field.")]
     public string Password { get; set; } = default!;
 }

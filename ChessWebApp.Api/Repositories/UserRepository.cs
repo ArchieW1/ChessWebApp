@@ -18,16 +18,16 @@ public sealed class UserRepository : IUserRepository
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         int result = await connection.ExecuteAsync(
-           @"INSERT INTO Users
-            (
-                Username,
-                Password,
-                Email,
-                Wins,
-                Losses
-            )
-            VALUES
-            (@Username, @Password, @Email, @Wins, @Losses)",
+            @"INSERT INTO Users
+              (
+                  Username,
+                  Password,
+                  Email,
+                  Wins,
+                  Losses
+              )
+              VALUES
+              (@Username, @Password, @Email, @Wins, @Losses)",
             user);
         return result > 0;
     }
@@ -36,12 +36,12 @@ public sealed class UserRepository : IUserRepository
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         return await connection.QuerySingleOrDefaultAsync<UserDto>(
-           @"SELECT
-               *
-            FROM
-               Users
-            WHERE
-               Username = @Username LIMIT 1",
+            @"SELECT
+                 *
+              FROM
+                 Users
+              WHERE
+                 Username = @Username LIMIT 1",
             new { Username = username });
     }
 
@@ -49,23 +49,22 @@ public sealed class UserRepository : IUserRepository
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         return await connection.QueryAsync<UserDto>(
-           @"SELECT
-               *
-            FROM
-               Users"
-            );
+            @"SELECT
+                  *
+              FROM
+                  Users");
     }
 
     public async Task<bool> UpdateAsync(UserDto user)
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         int result = await connection.ExecuteAsync(
-           @"UPDATE
-               Users
-            SET
-               Username = @Username, Password = @Password, Email = @Email, Wins = @Wins, Losses = @Losses
-            WHERE
-               Username = @Username",
+            @"UPDATE
+                 Users
+              SET
+                 Username = @Username, Password = @Password, Email = @Email, Wins = @Wins, Losses = @Losses
+              WHERE
+                 Username = @Username", 
             user);
         return result > 0;
     }
@@ -74,11 +73,11 @@ public sealed class UserRepository : IUserRepository
     {
         using IDbConnection connection = await _connectionFactory.CreateConnectionAsync();
         int result = await connection.ExecuteAsync(
-           @"DELETE
-            FROM
-               Users
-            WHERE
-               Username = @Username",
+            @"DELETE
+              FROM
+                 Users
+              WHERE
+                 Username = @Username",
             new {Username = username});
         return result > 0;
     }

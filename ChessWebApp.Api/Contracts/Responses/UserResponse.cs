@@ -8,7 +8,7 @@ public sealed class UserResponse
 
     public string Password { get; init; } = default!;
 
-    public int Wins { get; init; } = default!;
+    public int Wins { get; init; }
 
-    public int Losses { get; init; } = default!;
+    public int Losses { get; init; }
 }
