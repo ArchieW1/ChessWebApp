@@ -13,7 +13,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(_ => new HttpClient
 {
-    BaseAddress = new Uri(builder.Configuration.GetValue<string>("Api:Uri"))
+    BaseAddress = new Uri(builder.Configuration.GetValue<string>("Api:UriHttps"))
 });
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();

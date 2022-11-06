@@ -10,12 +10,13 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-        {
-            policy.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        });
+    options.AddDefaultPolicy(policyBuilder => 
+        policyBuilder.WithOrigins(
+                builder.Configuration.GetValue<string>("Url:UiHttps"), 
+                builder.Configuration.GetValue<string>("Url:UiHttp"))
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
 });
 builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerDoc();
