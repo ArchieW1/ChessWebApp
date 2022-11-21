@@ -12,10 +12,14 @@ A Level NEA Work
     - [x] Create api endpoints
     - [x] Request validation
     - [x] Make swagger look  nice
-  - [ ] Password encryption
+  - [x] Password encryption
+    - [x] Hash
+    - [x] Salt
   - [ ] JWT Authentication
+    - [x] Generate token
+    - [ ] Return token to user
+    - [ ] Handle tokens
 - [ ] Chess Page
   - [ ] Chess Logic
   - [ ] Chess AI
-- [ ] 
 - [ ] Celebrate a job well done
