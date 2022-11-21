@@ -3,11 +3,10 @@ using ChessWebApp.Api.Domain;
 using ChessWebApp.Api.Mapping;
 using ChessWebApp.Api.Services;
 using FastEndpoints;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ChessWebApp.Api.Endpoints;
 
-[HttpGet("users"), AllowAnonymous]
+[HttpGet("users")]
 public sealed class GetAllUsersEndpoint : EndpointWithoutRequest<GetAllUsersResponse>
 {
     private readonly IUserService _userService;

@@ -11,21 +11,19 @@ public static class DomainToApiContractMapper
         {
             Email = user.Email.Value,
             Username = user.Username.Value,
-            Password = user.Password.Value,
             Wins = user.Wins.Value,
             Losses = user.Losses.Value
         };
     }
 
-    public static GetAllUsersResponse ToUsersResponse(this IEnumerable<User> customers)
+    public static GetAllUsersResponse ToUsersResponse(this IEnumerable<User> users)
     {
         return new GetAllUsersResponse
         {
-            Customers = customers.Select(user => new UserResponse
+            Users = users.Select(user => new UserResponse
             {
                 Email = user.Email.Value,
                 Username = user.Username.Value,
-                Password = user.Password.Value,
                 Wins = user.Wins.Value,
                 Losses = user.Losses.Value
             })

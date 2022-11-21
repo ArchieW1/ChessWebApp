@@ -13,6 +13,7 @@ public static class DtoToDomainMapper
             Email = EmailAddress.From(userDto.Email),
             Username = Username.From(userDto.Username),
             Password = Password.From(userDto.Password),
+            Salt = Salt.From(userDto.Salt),
             Wins = Wins.From(userDto.Wins),
             Losses = Losses.From(userDto.Losses)
         };

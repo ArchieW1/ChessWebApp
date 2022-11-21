@@ -18,9 +18,9 @@ public sealed class UserService : IUserService
                new List<UserModel>();
     }
 
-    public async Task<UserModel?> GetAsync(string name)
+    public async Task<UserModel> GetAsync(string name)
     {
-        return await _httpClient.GetFromJsonAsync<UserModel>($"users/{name}");
+        return await _httpClient.GetFromJsonAsync<UserModel>($"users/{name}") ?? default!;
     }
 
     public async Task<HttpResponseMessage> CreateAsync(UserModel user)
@@ -36,5 +36,10 @@ public sealed class UserService : IUserService
     public async Task<HttpResponseMessage> DeleteAsync(string name)
     {
         return await _httpClient.DeleteAsync($"users/{name}");
+    }
+
+    public async Task<HttpResponseMessage> LoginAsync(UserModel user)
+    {
+        return await _httpClient.PostAsJsonAsync("users/login", user);
     }
 }

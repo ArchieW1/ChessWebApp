@@ -10,6 +10,8 @@ public sealed class User
 
     public Password Password { get; init; } = default!;
 
+    public Salt Salt { get; set; } = default!;
+
     public Wins Wins { get; init; } = default!;
 
     public Losses Losses { get; init; } = default!;

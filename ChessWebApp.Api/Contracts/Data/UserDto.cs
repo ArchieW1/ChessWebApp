@@ -8,6 +8,8 @@ public sealed class UserDto
 
     public string Password { get; init; } = default!;
 
+    public string Salt { get; set; } = default!;
+
     public int Wins { get; init; }
 
     public int Losses { get; init; }

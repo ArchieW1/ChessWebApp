@@ -12,6 +12,7 @@ public static class DomainToDtoMapper
             Email = user.Email.Value,
             Username = user.Username.Value,
             Password = user.Password.Value,
+            Salt = user.Salt.Value,
             Wins = user.Wins.Value,
             Losses = user.Losses.Value
         };

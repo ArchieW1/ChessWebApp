@@ -4,11 +4,10 @@ using ChessWebApp.Api.Domain;
 using ChessWebApp.Api.Mapping;
 using ChessWebApp.Api.Services;
 using FastEndpoints;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ChessWebApp.Api.Endpoints;
 
-[HttpPut("users/{username}"), AllowAnonymous]
+[HttpPut("users/{username}")]
 public sealed class UpdateUserEndpoint : Endpoint<UpdateUserRequest, UserResponse>
 {
     private readonly IUserService _userService;

@@ -1,11 +1,10 @@
 ﻿using ChessWebApp.Api.Contracts.Requests;
 using ChessWebApp.Api.Services;
 using FastEndpoints;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ChessWebApp.Api.Endpoints;
 
-[HttpDelete("users/{username}"), AllowAnonymous]
+[HttpDelete("users/{username}")]
 public sealed class DeleteUserEndpoint : Endpoint<DeleteUserRequest>
 {
     private readonly IUserService _userService;

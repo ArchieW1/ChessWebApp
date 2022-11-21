@@ -22,12 +22,13 @@ public sealed class UserRepository : IUserRepository
               (
                   Username,
                   Password,
+                  Salt,
                   Email,
                   Wins,
                   Losses
               )
               VALUES
-              (@Username, @Password, @Email, @Wins, @Losses)",
+              (@Username, @Password, @Salt, @Email, @Wins, @Losses)",
             user);
         return result > 0;
     }

@@ -13,10 +13,13 @@ public sealed partial class LoginForm : ComponentBase
 
     private async Task OnValidLoginSubmitAsync()
     {
-        UserModel? user = await _userService.GetAsync(_userLoginModel.Username);
-        if (user is null || user.Password != _userLoginModel.Password)
+        HttpResponseMessage response = await _userService.LoginAsync(new UserModel
         {
-            _loginFailed = true;
-        }
+            Username = _userLoginModel.Username,
+            Password = _userLoginModel.Password
+        });
+
+        string content = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(content);
     }
 }

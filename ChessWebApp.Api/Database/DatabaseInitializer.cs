@@ -21,6 +21,7 @@ public sealed class DatabaseInitializer
                   Username TEXT PRIMARY KEY, 
                   Email TEXT NOT NULL,
                   Password TEXT NOT NULL, 
+                  Salt TEXT NOT NULL,
                   Wins INTEGER NOT NULL,
                   Losses INTEGER NOT NULL
               )");
