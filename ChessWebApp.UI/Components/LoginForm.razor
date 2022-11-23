@@ -1,4 +1,6 @@
 ﻿@inject IUserService _userService;
+@inject ILocalStorageService _browserStorage
+@inject NavigationManager _navManager;
 
 <div class="login">
 	<EditForm Model="@_userLoginModel" OnValidSubmit="OnValidLoginSubmitAsync">

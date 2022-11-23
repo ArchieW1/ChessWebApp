@@ -1,5 +1,6 @@
 ﻿using ChessWebApp.UI.Models;
 using Microsoft.AspNetCore.Components;
+using Newtonsoft.Json;
 
 namespace ChessWebApp.UI.Components;
 
@@ -19,7 +20,15 @@ public sealed partial class LoginForm : ComponentBase
             Password = _userLoginModel.Password
         });
 
-        string content = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(content);
+        if (!response.IsSuccessStatusCode)
+        {
+            _loginFailed = true;
+            return;
+        }
+        
+        string stringJwt = await response.Content.ReadAsStringAsync();
+        Jwt jwt = JsonConvert.DeserializeObject<Jwt>(stringJwt);
+        await _browserStorage.SetItemAsync("token", jwt.JwtToken);
+        _navManager.NavigateTo("/");
     }
 }

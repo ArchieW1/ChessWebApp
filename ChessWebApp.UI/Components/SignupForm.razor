@@ -17,6 +17,12 @@
                 <p style="color: red">User name is taken.</p>
             </div>
         }
+		@if (_signupSuccess)
+		{
+			<div class="validation-container">
+				<p style="color: green">Account created.</p>
+			</div>
+		}
 		
 		<DataAnnotationsValidator/>
 		<div class="input-container">

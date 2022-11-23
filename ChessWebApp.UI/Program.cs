@@ -4,7 +4,7 @@ using ChessWebApp.UI;
 using ChessWebApp.UI.Authentication;
 using ChessWebApp.UI.Services;
 using Microsoft.AspNetCore.Components.Authorization;
-using ProtectedLocalStore;
+using Blazored.LocalStorage;
 
 WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -15,7 +15,7 @@ builder.Services.AddScoped(_ => new HttpClient
 {
     BaseAddress = new Uri(builder.Configuration.GetValue<string>("Api:UriHttps"))
 });
-builder.Services.AddScoped<ProtectedSessionStorage>();
+builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
 builder.Services.AddScoped<IUserService, UserService>();

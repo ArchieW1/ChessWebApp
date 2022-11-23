@@ -10,6 +10,7 @@ public sealed partial class SignupForm : ComponentBase
     
     private readonly UserSignupModel _userSignupModel = new();
     private bool _signupFailed;
+    private bool _signupSuccess;
 	
     private async Task OnValidSignupSubmitAsync()
     {
@@ -23,6 +24,11 @@ public sealed partial class SignupForm : ComponentBase
         if (!response.IsSuccessStatusCode)
         {
             _signupFailed = true;
+            _signupSuccess = false;
+            return;
         }
+
+        _signupFailed = false;
+        _signupSuccess = true;
     }
 }
