@@ -1,0 +1,60 @@
+﻿using System.Collections.ObjectModel;
+using ChessWebApp.ChessEngine.Boardd;
+
+namespace ChessWebApp.ChessEngine.Pieces;
+
+public class Knight : Piece
+{
+    private static readonly int[] CandidateMoveTransformations = {-17, -15, -10, -6, 6, 10, 15, 17};
+    
+    public Knight(int position, Alliance alliance) : base(position, alliance)
+    {
+    }
+
+    public override ReadOnlyCollection<Move> CalculateLegalMoves(Board board)
+    {
+        List<Move> legalMoves = new List<Move>();
+        
+        foreach (int moveTransformation in CandidateMoveTransformations)
+        {
+            int destinationCoordinate = Position + moveTransformation;
+            if (!BoardUtils.IsValidCoordinate(destinationCoordinate))
+            {
+                continue;
+            }
+
+            if (IsExclusion(Position, moveTransformation))
+            {
+                continue;
+            }
+            
+            Tile destinationCoordinateTile = Board.GetTile(destinationCoordinate);
+            if (!destinationCoordinateTile.IsTileOccupied)
+            {
+                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                continue;
+            }
+            
+            Piece pieceAtDestination = destinationCoordinateTile.Piece!;
+            Alliance pieceAlliance = pieceAtDestination.Alliance;
+            if (Alliance != pieceAlliance)
+            {
+                legalMoves.Add(new AttackMove(board, this, destinationCoordinate, pieceAtDestination));
+            }
+        }
+        
+        return new ReadOnlyCollection<Move>(legalMoves);
+    }
+
+    protected override bool IsExclusion(int currentPosition, int transformation)
+    {
+        return BoardUtils.CoordinatesRow(currentPosition) switch
+        {
+            Row.First => transformation is -17 or -10 or 6 or 15,
+            Row.Second => transformation is -10 or 6,
+            Row.Seventh => transformation is -6 or 10,
+            Row.Eighth => transformation is -15 or -6 or 10 or 17,
+            _ => false
+        };
+    }
+}
