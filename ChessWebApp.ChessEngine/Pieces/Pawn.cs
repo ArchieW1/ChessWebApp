@@ -5,7 +5,7 @@ namespace ChessWebApp.ChessEngine.Pieces;
 
 public class Pawn : Piece
 {
-    private static readonly int[] CandidateMoveTransformations = {8};
+    private static readonly int[] CandidateMoveTransformations = {8, 16};
     
     public Pawn(int position, Alliance alliance) : base(position, alliance)
     {
@@ -36,13 +36,6 @@ public class Pawn : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return BoardUtils.CoordinatesRow(currentPosition) switch
-        {
-            Row.First => transformation is -17 or -10 or 6 or 15,
-            Row.Second => transformation is -10 or 6,
-            Row.Seventh => transformation is -6 or 10,
-            Row.Eighth => transformation is -15 or -6 or 10 or 17,
-            _ => false
-        };
+        return false;
     }
 }

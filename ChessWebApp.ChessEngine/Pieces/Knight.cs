@@ -48,12 +48,12 @@ public class Knight : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return BoardUtils.CoordinatesRow(currentPosition) switch
+        return BoardUtils.CoordinatesColumn(currentPosition) switch
         {
-            Row.First => transformation is -17 or -10 or 6 or 15,
-            Row.Second => transformation is -10 or 6,
-            Row.Seventh => transformation is -6 or 10,
-            Row.Eighth => transformation is -15 or -6 or 10 or 17,
+            Column.First => transformation is -17 or -10 or 6 or 15,
+            Column.Second => transformation is -10 or 6,
+            Column.Seventh => transformation is -6 or 10,
+            Column.Eighth => transformation is -15 or -6 or 10 or 17,
             _ => false
         };
     }
