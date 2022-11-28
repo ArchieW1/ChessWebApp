@@ -5,7 +5,7 @@ namespace ChessWebApp.ChessEngine.Pieces;
 
 public class Pawn : Piece
 {
-    private static readonly int[] CandidateMoveTransformations = {8, 16};
+    private static readonly int[] CandidateMoveTransformations = {7, 8, 9, 16};
     
     public Pawn(int position, Alliance alliance) : base(position, alliance)
     {
@@ -17,25 +17,70 @@ public class Pawn : Piece
 
         foreach (int moveTransformation in CandidateMoveTransformations)
         {
-            int destinationCoordinate = Position + moveTransformation * Alliance.Direction();
+            int destinationCoordinate = Position + moveTransformation * Alliance.GetDirection();
 
-            if (!BoardUtils.IsValidCoordinate(destinationCoordinate))
+            if (!BoardUtils.IsValidCoordinate(destinationCoordinate) || IsExclusion(Position, moveTransformation))
             {
                 continue;
             }
 
-            if (moveTransformation == 8 && !Board.GetTile(destinationCoordinate).IsTileOccupied)
+            Tile destinationTile = Board.GetTile(destinationCoordinate);
+
+            if (moveTransformation is 8 && !destinationTile.IsTileOccupied)
             {
                 // TODO- Handle pawn move
                 legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                continue;
             }
+
+            if (IsJumpMove(moveTransformation, destinationCoordinate))
+            {
+                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                continue;
+            }
+
+            if (moveTransformation is 7 or 9 && destinationTile.IsTileOccupied && 
+                destinationTile.Piece!.Alliance == Alliance)
+            {
+                //TODO- more todo here
+                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                continue;
+            }
+            
         }
         
         return new ReadOnlyCollection<Move>(legalMoves);
     }
 
+    private bool IsJumpMove(int moveTransformation, int destinationCoordinate)
+    {
+        int behindDestinationCoordinate = Position + Alliance.GetDirection() * 8;
+        return 
+            (
+                (
+                    moveTransformation == 16 &&
+                    IsFirstMove &&
+                    BoardUtils.CoordinatesRow(Position) == Row.Second &&
+                    Alliance == Alliance.Black
+                ) ||
+                (
+                    BoardUtils.CoordinatesRow(Position) == Row.Seventh && 
+                    Alliance == Alliance.White
+                )
+            ) && 
+            !Board.GetTile(destinationCoordinate).IsTileOccupied &&
+            !Board.GetTile(behindDestinationCoordinate).IsTileOccupied;
+    }
+
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return false;
+        return BoardUtils.CoordinatesColumn(currentPosition) switch
+        {
+            Column.First => (transformation is 7 && Alliance == Alliance.Black) || 
+                            (transformation == 9 && Alliance == Alliance.White),
+            Column.Eighth => (transformation is 7 && Alliance == Alliance.White) || 
+                             (transformation == 9 && Alliance == Alliance.Black),
+            _ => false
+        };
     }
 }

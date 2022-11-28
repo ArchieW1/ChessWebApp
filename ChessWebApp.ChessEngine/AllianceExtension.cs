@@ -2,7 +2,7 @@
 
 public static class AllianceExtension
 {
-    public static int Direction(this Alliance alliance)
+    public static int GetDirection(this Alliance alliance)
     {
         return alliance switch
         {

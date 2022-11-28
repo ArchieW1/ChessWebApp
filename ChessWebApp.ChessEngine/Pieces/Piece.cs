@@ -7,6 +7,7 @@ public abstract class Piece
 {
     public Alliance Alliance { get; }
     protected int Position { get; }
+    protected bool IsFirstMove { get; } = false;
 
     protected Piece(int position, Alliance alliance)
     {
