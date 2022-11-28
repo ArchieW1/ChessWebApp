@@ -3,7 +3,7 @@ A Level NEA Work
 
 ## TODO:
 
-- [ ] Login/signup Page
+- [x] Login/signup Page
   - [x] User Api
     - [x] Db Connection
     - [x] Setup repo
@@ -15,11 +15,12 @@ A Level NEA Work
   - [x] Password encryption
     - [x] Hash
     - [x] Salt
-  - [ ] JWT Authentication
+  - [x] JWT Authentication
     - [x] Generate token
-    - [ ] Return token to user
-    - [ ] Handle tokens
+    - [x] Return token to user
+    - [x] Handle tokens
 - [ ] Chess Page
   - [ ] Chess Logic
+    - [ ] A long list of stuff I'm not writing here
   - [ ] Chess AI
 - [ ] Celebrate a job well done
