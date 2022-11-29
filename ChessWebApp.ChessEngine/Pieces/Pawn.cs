@@ -24,7 +24,7 @@ public class Pawn : Piece
                 continue;
             }
 
-            Tile destinationTile = Board.GetTile(destinationCoordinate);
+            Tile destinationTile = board.GetTile(destinationCoordinate);
 
             if (moveTransformation is 8 && !destinationTile.IsTileOccupied)
             {
@@ -33,7 +33,7 @@ public class Pawn : Piece
                 continue;
             }
 
-            if (IsJumpMove(moveTransformation, destinationCoordinate))
+            if (IsJumpMove(board, moveTransformation, destinationCoordinate))
             {
                 legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
                 continue;
@@ -52,7 +52,7 @@ public class Pawn : Piece
         return new ReadOnlyCollection<Move>(legalMoves);
     }
 
-    private bool IsJumpMove(int moveTransformation, int destinationCoordinate)
+    private bool IsJumpMove(Board board, int moveTransformation, int destinationCoordinate)
     {
         int behindDestinationCoordinate = Position + Alliance.GetDirection() * 8;
         return 
@@ -68,8 +68,8 @@ public class Pawn : Piece
                     Alliance == Alliance.White
                 )
             ) && 
-            !Board.GetTile(destinationCoordinate).IsTileOccupied &&
-            !Board.GetTile(behindDestinationCoordinate).IsTileOccupied;
+            !board.GetTile(destinationCoordinate).IsTileOccupied &&
+            !board.GetTile(behindDestinationCoordinate).IsTileOccupied;
     }
 
     protected override bool IsExclusion(int currentPosition, int transformation)

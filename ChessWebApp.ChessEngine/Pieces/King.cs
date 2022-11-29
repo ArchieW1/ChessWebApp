@@ -24,7 +24,7 @@ public class King : Piece
                 continue;
             }
             
-            Tile destinationCoordinateTile = Board.GetTile(destinationCoordinate);
+            Tile destinationCoordinateTile = board.GetTile(destinationCoordinate);
             if (!destinationCoordinateTile.IsTileOccupied)
             {
                 legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
