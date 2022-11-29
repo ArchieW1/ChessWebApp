@@ -1,4 +1,4 @@
-﻿namespace ChessWebApp.ChessEngine.Boardd;
+﻿namespace ChessWebApp.ChessEngine.BoardLib;
 
 public enum Column
 {

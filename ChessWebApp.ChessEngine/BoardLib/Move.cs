@@ -1,6 +1,6 @@
 ﻿using ChessWebApp.ChessEngine.Pieces;
 
-namespace ChessWebApp.ChessEngine.Boardd;
+namespace ChessWebApp.ChessEngine.BoardLib;
 
 public abstract class Move
 {
