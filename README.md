@@ -4,7 +4,6 @@
 A Level NEA Work
 
 ## TODO:
-
 - [x] Login/signup Page
   - [x] User Api
     - [x] Db Connection
