@@ -19,12 +19,7 @@ public class Knight : Piece
         foreach (int moveTransformation in CandidateMoveTransformations)
         {
             int destinationCoordinate = Position + moveTransformation;
-            if (!BoardUtils.IsValidCoordinate(destinationCoordinate))
-            {
-                continue;
-            }
-
-            if (IsExclusion(Position, moveTransformation))
+            if (!BoardUtils.IsValidCoordinate(destinationCoordinate) || IsExclusion(Position, moveTransformation))
             {
                 continue;
             }
