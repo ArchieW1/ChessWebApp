@@ -1,5 +1,3 @@
-# Hi Oxford
-
 # ChessWebApp
 A Level NEA Work
 
