@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using ChessWebApp.ChessEngine.BoardLib;
-using ChessWebApp.ChessEngine.BoardLib;
 
 namespace ChessWebApp.ChessEngine.Pieces;
 

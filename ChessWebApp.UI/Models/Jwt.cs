@@ -2,5 +2,5 @@
 
 public sealed class Jwt
 {
-    public string JwtToken { get; set; }
+    public string JwtToken { get; set; } = default!;
 }
