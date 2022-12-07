@@ -7,6 +7,7 @@ public class Bishop : DirectionalPiece
     public Bishop(int position, Alliance alliance) : base(position, alliance)
     {
         CandidateMoveVectorTransformations = new [] {-9, -7, 7, 9};
+        Symbol = "B";
     }
 
     protected override bool IsExclusion(int currentPosition, int transformation)

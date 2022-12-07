@@ -7,8 +7,9 @@ public class Queen : DirectionalPiece
     public Queen(int position, Alliance alliance) : base(position, alliance)
     {
         CandidateMoveVectorTransformations = new[] {-9, -7, 7, 9};
+        Symbol = "Q";
     }
-    
+
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
         return BoardUtils.CoordinatesColumn(currentPosition) switch

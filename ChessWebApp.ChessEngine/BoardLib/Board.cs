@@ -1,4 +1,5 @@
-﻿using ChessWebApp.ChessEngine.Pieces;
+﻿using System.Text;
+using ChessWebApp.ChessEngine.Pieces;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 
@@ -13,16 +14,28 @@ public class Board
         _tiles = CreateGameBoard();
         _whitePieces = CalculateActivePieces(_tiles, Alliance.White);
         _blackPieces = CalculateActivePieces(_tiles, Alliance.Black);
+
+        IEnumerable<Move> whiteStandardLegalMoves = CalculateLegalMoves(_whitePieces);
+        IEnumerable<Move> blackStandardLegalMoves = CalculateLegalMoves(_blackPieces);
     }
 
-    public Tile this[int index]
+    public Tile this[int index] => _tiles[index];
+
+    public override string ToString()
     {
-        get => _tiles[index];
-    }
-    
-    public Tile GetTile(int tileCoordinate)
-    {
-        return _tiles[tileCoordinate];
+        string builder = string.Empty;
+        for (int i = 0; i < BoardUtils.NumberOfTiles; i++)
+        {
+            string tileText = _tiles[i].ToString();
+            builder += tileText.PadRight(3);
+
+            if ((i + 1) % BoardUtils.NumberOfColumns == 0)
+            {
+                builder += '\n';
+            }
+        }
+
+        return builder;
     }
 
     private static List<Tile> CreateGameBoard()
@@ -35,7 +48,7 @@ public class Board
         return new List<Tile>(tiles);
     }
 
-    private static IEnumerable<Piece> CalculateActivePieces(List<Tile> tiles, Alliance alliance)
+    private static IEnumerable<Piece> CalculateActivePieces(IEnumerable<Tile> tiles, Alliance alliance)
     {
         List<Piece> activePieces = new();
 
@@ -56,48 +69,58 @@ public class Board
         return activePieces;
     }
 
+    private IEnumerable<Move> CalculateLegalMoves(IEnumerable<Piece> pieces)
+    {
+        List<Move> legalMoves = new();
+        foreach (Piece piece in pieces)
+        {
+            legalMoves.AddRange(piece.CalculateLegalMoves(this));
+        }
+        return legalMoves;
+    }
+
     public static Board CreateStandardBoard() 
     {
         // abbreviate for repetitions sake
-        static void bset(Piece p) => Builder.SetPiece(p);
-        Alliance bl = Alliance.Black;
-        Alliance wh = Alliance.White;
+        static void Bset(Piece p) => Builder.SetPiece(p);
+        const Alliance bl = Alliance.Black;
+        const Alliance wh = Alliance.White;
 
-        // black pices
-        bset(new Rook(0, bl));
-        bset(new Knight(1, bl));
-        bset(new Bishop(2, bl));
-        bset(new Queen(3, bl));
-        bset(new King(4, bl));
-        bset(new Bishop(5, bl));
-        bset(new Knight(6, bl));
-        bset(new Rook(7, bl));
-        bset(new Pawn(8, bl));
-        bset(new Pawn(9, bl));
-        bset(new Pawn(10, bl));
-        bset(new Pawn(11, bl));
-        bset(new Pawn(12, bl));
-        bset(new Pawn(13, bl));
-        bset(new Pawn(14, bl));
-        bset(new Pawn(15, bl));
+        // black pieces
+        Bset(new Rook(0, bl));
+        Bset(new Knight(1, bl));
+        Bset(new Bishop(2, bl));
+        Bset(new Queen(3, bl));
+        Bset(new King(4, bl));
+        Bset(new Bishop(5, bl));
+        Bset(new Knight(6, bl));
+        Bset(new Rook(7, bl));
+        Bset(new Pawn(8, bl));
+        Bset(new Pawn(9, bl));
+        Bset(new Pawn(10, bl));
+        Bset(new Pawn(11, bl));
+        Bset(new Pawn(12, bl));
+        Bset(new Pawn(13, bl));
+        Bset(new Pawn(14, bl));
+        Bset(new Pawn(15, bl));
 
         // white pieces
-        bset(new Pawn(48, wh));
-        bset(new Pawn(49, wh));
-        bset(new Pawn(50, wh));
-        bset(new Pawn(51, wh));
-        bset(new Pawn(52, wh));
-        bset(new Pawn(53, wh));
-        bset(new Pawn(54, wh));
-        bset(new Pawn(55, wh));
-        bset(new Rook(56, wh));
-        bset(new Knight(57, wh));
-        bset(new Bishop(58, wh));
-        bset(new Queen(59, wh));
-        bset(new King(60, wh));
-        bset(new Bishop(61, wh));
-        bset(new Knight(62, wh));
-        bset(new Rook(63, wh));
+        Bset(new Pawn(48, wh));
+        Bset(new Pawn(49, wh));
+        Bset(new Pawn(50, wh));
+        Bset(new Pawn(51, wh));
+        Bset(new Pawn(52, wh));
+        Bset(new Pawn(53, wh));
+        Bset(new Pawn(54, wh));
+        Bset(new Pawn(55, wh));
+        Bset(new Rook(56, wh));
+        Bset(new Knight(57, wh));
+        Bset(new Bishop(58, wh));
+        Bset(new Queen(59, wh));
+        Bset(new King(60, wh));
+        Bset(new Bishop(61, wh));
+        Bset(new Knight(62, wh));
+        Bset(new Rook(63, wh));
 
         Builder.SetMoveMaker(wh);
         return Builder.Build();

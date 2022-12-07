@@ -3,7 +3,7 @@ using ChessWebApp.ChessEngine.Pieces;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 
-public record Tile
+public class Tile
 {
     public Piece? Piece { get; }
     public bool IsTileOccupied => Piece is not null;
@@ -21,18 +21,27 @@ public record Tile
         return piece is null ? EmptyTiles[tileCoordinate] : new Tile(tileCoordinate, piece);
     }
     
-    private static readonly ReadOnlyDictionary<int, Tile> EmptyTiles = CreateAllPossibleEmptyTiles();
+    private static readonly Dictionary<int, Tile> EmptyTiles = CreateAllPossibleEmptyTiles();
     
-    private static ReadOnlyDictionary<int, Tile> CreateAllPossibleEmptyTiles()
+    private static Dictionary<int, Tile> CreateAllPossibleEmptyTiles()
     {
         Dictionary<int, Tile> emptyTileMap = new();
         
-        const int numOfTilesInBoard = 64;
-        for (int i = 0; i < numOfTilesInBoard; i++)
+        for (int i = 0; i < BoardUtils.NumberOfTiles; i++)
         {
-            emptyTileMap.Add(1, new Tile(i));
+            emptyTileMap[i] = new Tile(i);
         }
         
-        return new ReadOnlyDictionary<int, Tile>(emptyTileMap);
+        return new Dictionary<int, Tile>(emptyTileMap);
+    }
+
+    public override string ToString()
+    {
+        if (!IsTileOccupied)
+        {
+            return "-";
+        }
+
+        return Piece!.ToString();
     }
 }

@@ -11,7 +11,7 @@ public abstract class DirectionalPiece : Piece
     {
     }
 
-    public override ReadOnlyCollection<Move> CalculateLegalMoves(Board board)
+    public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
         List<Move> legalMoves = new List<Move>();
 
@@ -31,7 +31,7 @@ public abstract class DirectionalPiece : Piece
                     continue;
                 }
                 
-                Tile destinationCoordinateTile = board.GetTile(destinationCoordinate);
+                Tile destinationCoordinateTile = board[destinationCoordinate];
                 if (!destinationCoordinateTile.IsTileOccupied)
                 {
                     legalMoves.Add(new MajorMove(board, this, destinationCoordinate));

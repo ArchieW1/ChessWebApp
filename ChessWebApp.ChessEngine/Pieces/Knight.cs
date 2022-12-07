@@ -9,9 +9,10 @@ public class Knight : Piece
     
     public Knight(int position, Alliance alliance) : base(position, alliance)
     {
+        Symbol = "N";
     }
 
-    public override ReadOnlyCollection<Move> CalculateLegalMoves(Board board)
+    public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
         List<Move> legalMoves = new List<Move>();
         
@@ -23,7 +24,7 @@ public class Knight : Piece
                 continue;
             }
             
-            Tile destinationCoordinateTile = board.GetTile(destinationCoordinate);
+            Tile destinationCoordinateTile = board[destinationCoordinate];
             if (!destinationCoordinateTile.IsTileOccupied)
             {
                 legalMoves.Add(new MajorMove(board, this, destinationCoordinate));

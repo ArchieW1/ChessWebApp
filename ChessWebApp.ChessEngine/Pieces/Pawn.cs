@@ -9,9 +9,10 @@ public class Pawn : Piece
     
     public Pawn(int position, Alliance alliance) : base(position, alliance)
     {
+        Symbol = "P";
     }
-
-    public override ReadOnlyCollection<Move> CalculateLegalMoves(Board board)
+    
+    public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
         List<Move> legalMoves = new List<Move>();
 
@@ -24,7 +25,7 @@ public class Pawn : Piece
                 continue;
             }
 
-            Tile destinationTile = board.GetTile(destinationCoordinate);
+            Tile destinationTile = board[destinationCoordinate];
 
             if (moveTransformation is 8 && !destinationTile.IsTileOccupied)
             {
@@ -68,18 +69,18 @@ public class Pawn : Piece
                     Alliance == Alliance.White
                 )
             ) && 
-            !board.GetTile(destinationCoordinate).IsTileOccupied &&
-            !board.GetTile(behindDestinationCoordinate).IsTileOccupied;
+            !board[destinationCoordinate].IsTileOccupied &&
+            !board[behindDestinationCoordinate].IsTileOccupied;
     }
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
         return BoardUtils.CoordinatesColumn(currentPosition) switch
         {
-            Column.First => (transformation is 7 && Alliance == Alliance.Black) || 
-                            (transformation == 9 && Alliance == Alliance.White),
-            Column.Eighth => (transformation is 7 && Alliance == Alliance.White) || 
-                             (transformation == 9 && Alliance == Alliance.Black),
+            Column.First => transformation is 7 && Alliance == Alliance.Black || 
+                            transformation == 9 && Alliance == Alliance.White,
+            Column.Eighth => transformation is 7 && Alliance == Alliance.White || 
+                             transformation == 9 && Alliance == Alliance.Black,
             _ => false
         };
     }
