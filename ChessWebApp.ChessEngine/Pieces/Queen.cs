@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.ChessEngine.Pieces;
 
-public class Queen : DirectionalPiece
+public sealed class Queen : DirectionalPiece
 {
     public Queen(int position, Alliance alliance) : base(position, alliance)
     {

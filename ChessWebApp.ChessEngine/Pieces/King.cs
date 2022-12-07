@@ -3,7 +3,7 @@ using ChessWebApp.ChessEngine.BoardLib;
 
 namespace ChessWebApp.ChessEngine.Pieces;
 
-public class King : Piece
+public sealed class King : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {-9, -8, -7, -1, 1, 7, 8, 9};
     
@@ -28,15 +28,14 @@ public class King : Piece
             Tile destinationCoordinateTile = board[destinationCoordinate];
             if (!destinationCoordinateTile.IsTileOccupied)
             {
-                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
                 continue;
             }
             
-            Piece pieceAtDestination = destinationCoordinateTile.Piece!;
-            Alliance pieceAlliance = pieceAtDestination.Alliance;
+            Alliance pieceAlliance = destinationCoordinateTile.Piece!.Alliance;
             if (Alliance != pieceAlliance)
             {
-                legalMoves.Add(new AttackMove(board, this, destinationCoordinate, pieceAtDestination));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
             }
         }
 

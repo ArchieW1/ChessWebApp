@@ -2,16 +2,16 @@
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 
-public abstract class Move
+public sealed class Move
 {
-    protected Board Board { get; }
-    protected Piece MovedPiece { get; }
-    protected int DestinationCoordinate { get; set; }
+    private Board _board;
+    private Piece _movedPiece;
+    private int _destinationCoordinate;
 
-    protected Move(Board board, Piece movedPiece, int destinationCoordinate)
+    public Move(Board board, Piece movedPiece, int destinationCoordinate)
     {
-        Board = board;
-        MovedPiece = movedPiece;
-        DestinationCoordinate = destinationCoordinate;
+        _board = board;
+        _movedPiece = movedPiece;
+        _destinationCoordinate = destinationCoordinate;
     }
 }

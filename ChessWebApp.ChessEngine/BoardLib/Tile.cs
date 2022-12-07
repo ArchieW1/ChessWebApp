@@ -3,7 +3,7 @@ using ChessWebApp.ChessEngine.Pieces;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 
-public class Tile
+public sealed class Tile
 {
     public Piece? Piece { get; }
     public bool IsTileOccupied => Piece is not null;

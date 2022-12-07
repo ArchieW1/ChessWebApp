@@ -3,7 +3,7 @@ using ChessWebApp.ChessEngine.BoardLib;
 
 namespace ChessWebApp.ChessEngine.Pieces;
 
-public class Pawn : Piece
+public sealed class Pawn : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {7, 8, 9, 16};
     
@@ -30,13 +30,13 @@ public class Pawn : Piece
             if (moveTransformation is 8 && !destinationTile.IsTileOccupied)
             {
                 // TODO- Handle pawn move
-                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
                 continue;
             }
 
             if (IsJumpMove(board, moveTransformation, destinationCoordinate))
             {
-                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
                 continue;
             }
 
@@ -44,7 +44,7 @@ public class Pawn : Piece
                 destinationTile.Piece!.Alliance == Alliance)
             {
                 //TODO- more todo here
-                legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
                 continue;
             }
             

@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.ChessEngine.Pieces;
 
-public class Rook : DirectionalPiece
+public sealed class Rook : DirectionalPiece
 {
     public Rook(int position, Alliance alliance) : base(position, alliance)
     {

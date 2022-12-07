@@ -2,7 +2,7 @@
 
 namespace ChessWebApp.ChessEngine.Pieces;
 
-public class Bishop : DirectionalPiece
+public sealed class Bishop : DirectionalPiece
 {
     public Bishop(int position, Alliance alliance) : base(position, alliance)
     {

@@ -34,15 +34,14 @@ public abstract class DirectionalPiece : Piece
                 Tile destinationCoordinateTile = board[destinationCoordinate];
                 if (!destinationCoordinateTile.IsTileOccupied)
                 {
-                    legalMoves.Add(new MajorMove(board, this, destinationCoordinate));
+                    legalMoves.Add(new Move(board, this, destinationCoordinate));
                     continue;
                 }
             
-                Piece pieceAtDestination = destinationCoordinateTile.Piece!;
-                Alliance pieceAlliance = pieceAtDestination.Alliance;
+                Alliance pieceAlliance = destinationCoordinateTile.Piece!.Alliance;
                 if (Alliance != pieceAlliance)
                 {
-                    legalMoves.Add(new AttackMove(board, this, destinationCoordinate, pieceAtDestination));
+                    legalMoves.Add(new Move(board, this, destinationCoordinate));
                 }
 
                 break;
