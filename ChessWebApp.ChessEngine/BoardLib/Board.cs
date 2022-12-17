@@ -23,12 +23,12 @@ public sealed partial class Board
     public override string ToString()
     {
         string builder = string.Empty;
-        for (int i = 0; i < BoardUtils.NumberOfTiles; i++)
+        for (int i = 0; i < Utils.NumberOfTiles; i++)
         {
             string tileText = _tiles[i].ToString();
             builder += tileText.PadRight(3);
 
-            if ((i + 1) % BoardUtils.NumberOfColumns == 0)
+            if ((i + 1) % Utils.NumberOfColumns == 0)
             {
                 builder += '\n';
             }
@@ -39,7 +39,7 @@ public sealed partial class Board
 
     private static List<Tile> CreateGameBoard()
     {
-        Tile[] tiles = new Tile[BoardUtils.NumberOfTiles];
+        Tile[] tiles = new Tile[Utils.NumberOfTiles];
         for (int i = 0; i < tiles.Length; i++)
         {
             tiles[i] = Tile.CreateTile(i, Builder.BoardConfig.GetValueOrDefault(i));

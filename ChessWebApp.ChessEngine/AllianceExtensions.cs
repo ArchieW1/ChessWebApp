@@ -1,6 +1,6 @@
 ﻿namespace ChessWebApp.ChessEngine;
 
-public static class AllianceExtension
+public static class AllianceExtensions
 {
     public static int GetDirection(this Alliance alliance)
     {

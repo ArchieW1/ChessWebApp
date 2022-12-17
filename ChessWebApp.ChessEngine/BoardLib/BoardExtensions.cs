@@ -1,4 +1,4 @@
-using static ChessWebApp.ChessEngine.BoardLib.BoardUtils;
+using static ChessWebApp.ChessEngine.BoardLib.Board.Utils;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 

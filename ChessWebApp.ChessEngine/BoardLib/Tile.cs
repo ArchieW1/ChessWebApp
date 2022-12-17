@@ -27,7 +27,7 @@ public sealed class Tile
     {
         Dictionary<int, Tile> emptyTileMap = new();
         
-        for (int i = 0; i < BoardUtils.NumberOfTiles; i++)
+        for (int i = 0; i < Board.Utils.NumberOfTiles; i++)
         {
             emptyTileMap[i] = new Tile(i);
         }

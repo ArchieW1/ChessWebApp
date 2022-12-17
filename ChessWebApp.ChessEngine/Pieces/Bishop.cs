@@ -14,8 +14,8 @@ public sealed class Bishop : DirectionalPiece
     {
         return currentPosition.GetColumn() switch
         {
-            BoardUtils.Column.First => transformation is -9 or 7,
-            BoardUtils.Column.Eighth => transformation is -7 or 9,
+            Board.Utils.Column.First => transformation is -9 or 7,
+            Board.Utils.Column.Eighth => transformation is -7 or 9,
             _ => false
         };
     }
