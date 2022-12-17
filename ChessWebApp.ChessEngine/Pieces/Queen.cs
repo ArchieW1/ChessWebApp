@@ -12,7 +12,7 @@ public sealed class Queen : DirectionalPiece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return BoardUtils.CoordinatesColumn(currentPosition) switch
+        return currentPosition.GetColumn() switch
         {
             BoardUtils.Column.First => transformation is -9 or -1 or 7,
             BoardUtils.Column.Eighth => transformation is -7 or 1 or 9,

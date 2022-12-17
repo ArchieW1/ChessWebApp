@@ -20,7 +20,7 @@ public sealed class Pawn : Piece
         {
             int destinationCoordinate = Position + moveTransformation * Alliance.GetDirection();
 
-            if (!BoardUtils.IsValidCoordinate(destinationCoordinate) || IsExclusion(Position, moveTransformation))
+            if (!destinationCoordinate.IsValid() || IsExclusion(Position, moveTransformation))
             {
                 continue;
             }
@@ -61,11 +61,11 @@ public sealed class Pawn : Piece
                 (
                     moveTransformation == 16 &&
                     IsFirstMove &&
-                    BoardUtils.CoordinatesRow(Position) == BoardUtils.Row.Second &&
+                    BoardUtils.GetRow(Position) == BoardUtils.Row.Second &&
                     Alliance == Alliance.Black
                 ) ||
                 (
-                    BoardUtils.CoordinatesRow(Position) == BoardUtils.Row.Seventh && 
+                    BoardUtils.GetRow(Position) == BoardUtils.Row.Seventh && 
                     Alliance == Alliance.White
                 )
             ) && 
@@ -75,7 +75,7 @@ public sealed class Pawn : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return BoardUtils.CoordinatesColumn(currentPosition) switch
+        return BoardUtils.GetColumn(currentPosition) switch
         {
             BoardUtils.Column.First => transformation is 7 && Alliance == Alliance.Black || 
                                        transformation == 9 && Alliance == Alliance.White,

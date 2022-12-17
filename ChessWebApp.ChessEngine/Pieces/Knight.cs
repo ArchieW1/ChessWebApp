@@ -19,7 +19,7 @@ public sealed class Knight : Piece
         foreach (int moveTransformation in CandidateMoveTransformations)
         {
             int destinationCoordinate = Position + moveTransformation;
-            if (!BoardUtils.IsValidCoordinate(destinationCoordinate) || IsExclusion(Position, moveTransformation))
+            if (!destinationCoordinate.IsValid() || IsExclusion(Position, moveTransformation))
             {
                 continue;
             }
@@ -43,7 +43,7 @@ public sealed class Knight : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return BoardUtils.CoordinatesColumn(currentPosition) switch
+        return currentPosition.GetColumn() switch
         {
             BoardUtils.Column.First => transformation is -17 or -10 or 6 or 15,
             BoardUtils.Column.Second => transformation is -10 or 6,

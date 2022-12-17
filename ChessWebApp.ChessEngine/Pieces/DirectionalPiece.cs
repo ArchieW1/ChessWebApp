@@ -18,7 +18,7 @@ public abstract class DirectionalPiece : Piece
         foreach (int vectorTransformation in CandidateMoveVectorTransformations)
         {
             int destinationCoordinate = Position;
-            while (BoardUtils.IsValidCoordinate(destinationCoordinate))
+            while (destinationCoordinate.IsValid())
             {
                 if (IsExclusion(destinationCoordinate, vectorTransformation))
                 {
@@ -26,7 +26,7 @@ public abstract class DirectionalPiece : Piece
                 }
                 
                 destinationCoordinate += vectorTransformation;
-                if (!BoardUtils.IsValidCoordinate(destinationCoordinate))
+                if (!destinationCoordinate.IsValid())
                 {
                     continue;
                 }
