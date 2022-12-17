@@ -45,10 +45,10 @@ public sealed class Knight : Piece
     {
         return BoardUtils.CoordinatesColumn(currentPosition) switch
         {
-            Column.First => transformation is -17 or -10 or 6 or 15,
-            Column.Second => transformation is -10 or 6,
-            Column.Seventh => transformation is -6 or 10,
-            Column.Eighth => transformation is -15 or -6 or 10 or 17,
+            BoardUtils.Column.First => transformation is -17 or -10 or 6 or 15,
+            BoardUtils.Column.Second => transformation is -10 or 6,
+            BoardUtils.Column.Seventh => transformation is -6 or 10,
+            BoardUtils.Column.Eighth => transformation is -15 or -6 or 10 or 17,
             _ => false
         };
     }

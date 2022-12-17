@@ -14,8 +14,8 @@ public sealed class Queen : DirectionalPiece
     {
         return BoardUtils.CoordinatesColumn(currentPosition) switch
         {
-            Column.First => transformation is -9 or -1 or 7,
-            Column.Eighth => transformation is -7 or 1 or 9,
+            BoardUtils.Column.First => transformation is -9 or -1 or 7,
+            BoardUtils.Column.Eighth => transformation is -7 or 1 or 9,
             _ => false
         };
     }

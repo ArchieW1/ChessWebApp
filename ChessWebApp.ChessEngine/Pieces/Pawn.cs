@@ -61,11 +61,11 @@ public sealed class Pawn : Piece
                 (
                     moveTransformation == 16 &&
                     IsFirstMove &&
-                    BoardUtils.CoordinatesRow(Position) == Row.Second &&
+                    BoardUtils.CoordinatesRow(Position) == BoardUtils.Row.Second &&
                     Alliance == Alliance.Black
                 ) ||
                 (
-                    BoardUtils.CoordinatesRow(Position) == Row.Seventh && 
+                    BoardUtils.CoordinatesRow(Position) == BoardUtils.Row.Seventh && 
                     Alliance == Alliance.White
                 )
             ) && 
@@ -77,10 +77,10 @@ public sealed class Pawn : Piece
     {
         return BoardUtils.CoordinatesColumn(currentPosition) switch
         {
-            Column.First => transformation is 7 && Alliance == Alliance.Black || 
-                            transformation == 9 && Alliance == Alliance.White,
-            Column.Eighth => transformation is 7 && Alliance == Alliance.White || 
-                             transformation == 9 && Alliance == Alliance.Black,
+            BoardUtils.Column.First => transformation is 7 && Alliance == Alliance.Black || 
+                                       transformation == 9 && Alliance == Alliance.White,
+            BoardUtils.Column.Eighth => transformation is 7 && Alliance == Alliance.White || 
+                                        transformation == 9 && Alliance == Alliance.Black,
             _ => false
         };
     }

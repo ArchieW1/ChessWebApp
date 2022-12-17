@@ -14,8 +14,8 @@ public sealed class Rook : DirectionalPiece
     {
         return BoardUtils.CoordinatesColumn(currentPosition) switch
         {
-            Column.First => transformation is -1,
-            Column.Eighth => transformation is 1,
+            BoardUtils.Column.First => transformation is -1,
+            BoardUtils.Column.Eighth => transformation is 1,
             _ => false
         };
     }
