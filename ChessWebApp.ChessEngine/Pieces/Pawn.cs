@@ -61,11 +61,11 @@ public sealed class Pawn : Piece
                 (
                     moveTransformation == 16 &&
                     IsFirstMove &&
-                    BoardUtils.GetRow(Position) == BoardUtils.Row.Second &&
+                    Position.GetRow() == BoardUtils.Row.Second &&
                     Alliance == Alliance.Black
                 ) ||
                 (
-                    BoardUtils.GetRow(Position) == BoardUtils.Row.Seventh && 
+                    Position.GetRow() == BoardUtils.Row.Seventh && 
                     Alliance == Alliance.White
                 )
             ) && 
@@ -75,7 +75,7 @@ public sealed class Pawn : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return BoardUtils.GetColumn(currentPosition) switch
+        return currentPosition.GetColumn() switch
         {
             BoardUtils.Column.First => transformation is 7 && Alliance == Alliance.Black || 
                                        transformation == 9 && Alliance == Alliance.White,

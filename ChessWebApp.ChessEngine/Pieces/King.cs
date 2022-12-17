@@ -20,7 +20,7 @@ public sealed class King : Piece
         {
             int destinationCoordinate = Position + moveTransformation;
 
-            if (!BoardUtils.IsValid(destinationCoordinate) || IsExclusion(Position, moveTransformation))
+            if (!destinationCoordinate.IsValid() || IsExclusion(Position, moveTransformation))
             {
                 continue;
             }
