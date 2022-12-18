@@ -31,7 +31,7 @@ public sealed class Knight : Piece
                 continue;
             }
             
-            Alliance pieceAlliance = destinationCoordinateTile.Piece!.Alliance;
+            Alliance pieceAlliance = destinationCoordinateTile.Piece.Alliance;
             if (Alliance != pieceAlliance)
             {
                 legalMoves.Add(new Move(board, this, destinationCoordinate));
@@ -43,7 +43,7 @@ public sealed class Knight : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return currentPosition.GetColumn() switch
+        return currentPosition.ToColumn() switch
         {
             Board.Utils.Column.First => transformation is -17 or -10 or 6 or 15,
             Board.Utils.Column.Second => transformation is -10 or 6,

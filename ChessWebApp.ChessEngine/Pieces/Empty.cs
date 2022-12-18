@@ -1,0 +1,21 @@
+using ChessWebApp.ChessEngine.BoardLib;
+
+namespace ChessWebApp.ChessEngine.Pieces;
+
+public sealed class Empty : Piece
+{
+    public Empty(int position) : base(position, Alliance.None)
+    {
+        Symbol = "-";
+    }
+
+    public override IEnumerable<Move> CalculateLegalMoves(Board board)
+    {
+        return Enumerable.Empty<Move>();
+    }
+
+    protected override bool IsExclusion(int currentPosition, int transformation)
+    {
+        return true;
+    }
+}

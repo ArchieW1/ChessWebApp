@@ -1,21 +1,19 @@
-using static ChessWebApp.ChessEngine.BoardLib.Board.Utils;
-
 namespace ChessWebApp.ChessEngine.BoardLib;
 
 public static class BoardExtensions
 {
     public static bool IsValid(this int coordinate)
     {
-        return coordinate is >= 0 and < NumberOfTiles;
+        return coordinate is >= 0 and < Board.Utils.NumberOfTiles;
     }
 
-    public static Column GetColumn(this int coordinate)
+    public static Board.Utils.Column ToColumn(this int coordinate)
     {
-        return (Column)(coordinate / NumberOfColumns);
+        return (Board.Utils.Column)(coordinate / Board.Utils.NumberOfColumns);
     }
     
-    public static Row GetRow(this int coordinate)
+    public static Board.Utils.Row ToRow(this int coordinate)
     {
-        return (Row)(coordinate % NumberOfRows);
+        return (Board.Utils.Row)(coordinate % Board.Utils.NumberOfRows);
     }
 }

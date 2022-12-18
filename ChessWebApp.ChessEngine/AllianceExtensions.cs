@@ -8,7 +8,7 @@ public static class AllianceExtensions
         {
             Alliance.White => -1,
             Alliance.Black => 1,
-            _ => 1
+            _ => 0
         };
     }
 }

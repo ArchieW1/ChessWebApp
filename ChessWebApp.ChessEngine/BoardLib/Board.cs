@@ -4,18 +4,19 @@ namespace ChessWebApp.ChessEngine.BoardLib;
 
 public sealed partial class Board
 {
+    public IEnumerable<Piece> WhitePieces { get; }
+    public IEnumerable<Piece> BlackPieces { get; }
+    
     private readonly List<Tile> _tiles;
-    private readonly IEnumerable<Piece> _whitePieces;
-    private readonly IEnumerable<Piece> _blackPieces;
-
+    
     private Board()
     {
         _tiles = CreateGameBoard();
-        _whitePieces = CalculateActivePieces(_tiles, Alliance.White);
-        _blackPieces = CalculateActivePieces(_tiles, Alliance.Black);
+        WhitePieces = CalculateActivePieces(_tiles, Alliance.White);
+        BlackPieces = CalculateActivePieces(_tiles, Alliance.Black);
 
-        IEnumerable<Move> whiteStandardLegalMoves = CalculateLegalMoves(_whitePieces);
-        IEnumerable<Move> blackStandardLegalMoves = CalculateLegalMoves(_blackPieces);
+        IEnumerable<Move> whiteStandardLegalMoves = CalculateLegalMoves(WhitePieces);
+        IEnumerable<Move> blackStandardLegalMoves = CalculateLegalMoves(BlackPieces);
     }
 
     public Tile this[int index] => _tiles[index];
@@ -25,8 +26,7 @@ public sealed partial class Board
         string builder = string.Empty;
         for (int i = 0; i < Utils.NumberOfTiles; i++)
         {
-            string tileText = _tiles[i].ToString();
-            builder += tileText.PadRight(3);
+            builder += _tiles[i].ToString();
 
             if ((i + 1) % Utils.NumberOfColumns == 0)
             {
@@ -42,7 +42,7 @@ public sealed partial class Board
         Tile[] tiles = new Tile[Utils.NumberOfTiles];
         for (int i = 0; i < tiles.Length; i++)
         {
-            tiles[i] = Tile.CreateTile(i, Builder.BoardConfig.GetValueOrDefault(i));
+            tiles[i] = new Tile(i, Builder.BoardConfig[i]);
         }
         return new List<Tile>(tiles);
     }
@@ -58,7 +58,7 @@ public sealed partial class Board
                 continue;
             }
 
-            Piece piece = tile.Piece!;
+            Piece piece = tile.Piece;
             if (piece.Alliance == alliance)
             {
                 activePieces.Add(piece);

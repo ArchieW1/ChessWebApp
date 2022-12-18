@@ -12,7 +12,7 @@ public sealed class Bishop : DirectionalPiece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return currentPosition.GetColumn() switch
+        return currentPosition.ToColumn() switch
         {
             Board.Utils.Column.First => transformation is -9 or 7,
             Board.Utils.Column.Eighth => transformation is -7 or 9,

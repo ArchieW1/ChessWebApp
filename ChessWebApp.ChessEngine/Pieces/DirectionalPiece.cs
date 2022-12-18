@@ -38,7 +38,7 @@ public abstract class DirectionalPiece : Piece
                     continue;
                 }
             
-                Alliance pieceAlliance = destinationCoordinateTile.Piece!.Alliance;
+                Alliance pieceAlliance = destinationCoordinateTile.Piece.Alliance;
                 if (Alliance != pieceAlliance)
                 {
                     legalMoves.Add(new Move(board, this, destinationCoordinate));

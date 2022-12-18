@@ -2,6 +2,7 @@
 
 public enum Alliance
 {
+    None = 0,
     White,
     Black
 }

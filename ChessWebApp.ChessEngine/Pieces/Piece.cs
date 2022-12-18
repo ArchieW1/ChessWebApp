@@ -6,8 +6,8 @@ public abstract class Piece
 {
     public Alliance Alliance { get; }
     public int Position { get; }
-    protected bool IsFirstMove { get; } = false;
-    protected string Symbol { private get; set; } = string.Empty;
+    protected bool IsFirstMove => false;
+    protected string Symbol { private get; init; } = string.Empty;
 
     protected Piece(int position, Alliance alliance)
     {

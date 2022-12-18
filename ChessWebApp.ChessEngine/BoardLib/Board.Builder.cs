@@ -47,6 +47,11 @@ public sealed partial class Board
             SetPiece(new Pawn(13, bl));
             SetPiece(new Pawn(14, bl));
             SetPiece(new Pawn(15, bl));
+
+            for (int i = 16; i <= 47; i++)
+            {
+                SetPiece(new Empty(i));
+            }
     
             // white pieces
             SetPiece(new Pawn(48, wh));

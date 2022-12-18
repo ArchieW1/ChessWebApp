@@ -101,6 +101,6 @@ public sealed class BoardService : IBoardService
     public void ChangeCoordinateToSelected(string coordinate)
     {
         PieceLocations[FindIndexOfCoordinate(coordinate)].Piece = 
-            SelectedPiece!.Piece;
+            SelectedPiece.Piece;
     }
 }

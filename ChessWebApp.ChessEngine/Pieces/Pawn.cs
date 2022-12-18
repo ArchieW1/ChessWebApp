@@ -41,7 +41,7 @@ public sealed class Pawn : Piece
             }
 
             if (moveTransformation is 7 or 9 && destinationTile.IsTileOccupied && 
-                destinationTile.Piece!.Alliance == Alliance)
+                destinationTile.Piece.Alliance == Alliance)
             {
                 //TODO- more todo here
                 legalMoves.Add(new Move(board, this, destinationCoordinate));
@@ -61,11 +61,11 @@ public sealed class Pawn : Piece
                 (
                     moveTransformation == 16 &&
                     IsFirstMove &&
-                    Position.GetRow() == Board.Utils.Row.Second &&
+                    Position.ToRow() == Board.Utils.Row.Second &&
                     Alliance == Alliance.Black
                 ) ||
                 (
-                    Position.GetRow() == Board.Utils.Row.Seventh && 
+                    Position.ToRow() == Board.Utils.Row.Seventh && 
                     Alliance == Alliance.White
                 )
             ) && 
@@ -75,7 +75,7 @@ public sealed class Pawn : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return currentPosition.GetColumn() switch
+        return currentPosition.ToColumn() switch
         {
             Board.Utils.Column.First => transformation is 7 && Alliance == Alliance.Black || 
                                        transformation == 9 && Alliance == Alliance.White,
