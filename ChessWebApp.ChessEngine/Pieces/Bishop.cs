@@ -19,4 +19,9 @@ public sealed class Bishop : DirectionalPiece
             _ => false
         };
     }
+
+    public override Piece MovePiece(Move move)
+    {
+        return new Bishop(move.DestinationCoordinate, move.MovedPiece.Alliance);
+    }
 }

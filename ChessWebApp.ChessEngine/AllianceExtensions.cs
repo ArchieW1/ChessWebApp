@@ -1,4 +1,6 @@
-﻿namespace ChessWebApp.ChessEngine;
+﻿using ChessWebApp.ChessEngine.PlayerLib;
+
+namespace ChessWebApp.ChessEngine;
 
 public static class AllianceExtensions
 {
@@ -9,6 +11,16 @@ public static class AllianceExtensions
             Alliance.White => -1,
             Alliance.Black => 1,
             _ => 0
+        };
+    }
+
+    public static Player ChoosePlayer(this Alliance alliance, Player whitePlayer, Player blackPlayer)
+    {
+        return alliance switch
+        {
+            Alliance.White => whitePlayer,
+            Alliance.Black => blackPlayer,
+            _ => throw new IndexOutOfRangeException()
         };
     }
 }

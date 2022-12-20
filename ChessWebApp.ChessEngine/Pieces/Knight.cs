@@ -52,4 +52,9 @@ public sealed class Knight : Piece
             _ => false
         };
     }
+    
+    public override Piece MovePiece(Move move)
+    {
+        return new Knight(move.DestinationCoordinate, move.MovedPiece.Alliance);
+    }
 }

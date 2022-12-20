@@ -19,4 +19,9 @@ public sealed class Rook : DirectionalPiece
             _ => false
         };
     }
+    
+    public override Piece MovePiece(Move move)
+    {
+        return new Rook(move.DestinationCoordinate, move.MovedPiece.Alliance);
+    }
 }

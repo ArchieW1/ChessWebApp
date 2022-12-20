@@ -1,4 +1,5 @@
 ﻿using ChessWebApp.ChessEngine.Pieces;
+using ChessWebApp.ChessEngine.PlayerLib;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 
@@ -6,6 +7,9 @@ public sealed partial class Board
 {
     public IEnumerable<Piece> WhitePieces { get; }
     public IEnumerable<Piece> BlackPieces { get; }
+    public Player CurrentPlayer { get; }
+    public Player WhitePlayer { get; }
+    public Player BlackPlayer { get; }
     
     private readonly List<Tile> _tiles;
     
@@ -15,8 +19,12 @@ public sealed partial class Board
         WhitePieces = CalculateActivePieces(_tiles, Alliance.White);
         BlackPieces = CalculateActivePieces(_tiles, Alliance.Black);
 
-        IEnumerable<Move> whiteStandardLegalMoves = CalculateLegalMoves(WhitePieces);
-        IEnumerable<Move> blackStandardLegalMoves = CalculateLegalMoves(BlackPieces);
+        List<Move> whiteStandardLegalMoves = CalculateLegalMoves(WhitePieces).ToList();
+        List<Move> blackStandardLegalMoves = CalculateLegalMoves(BlackPieces).ToList();
+        WhitePlayer = new Player(this, Alliance.White, whiteStandardLegalMoves, blackStandardLegalMoves);
+        BlackPlayer = new Player(this, Alliance.White, blackStandardLegalMoves, whiteStandardLegalMoves);
+
+        CurrentPlayer = Builder.NextMoveMaker.ChoosePlayer(WhitePlayer, BlackPlayer);
     }
 
     public Tile this[int index] => _tiles[index];

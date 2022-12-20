@@ -51,4 +51,9 @@ public sealed class King : Piece
             _ => false
         };
     }
+    
+    public override Piece MovePiece(Move move)
+    {
+        return new King(move.DestinationCoordinate, move.MovedPiece.Alliance);
+    }
 }

@@ -18,4 +18,9 @@ public sealed class Empty : Piece
     {
         return true;
     }
+    
+    public override Piece MovePiece(Move move)
+    {
+        return new Empty(Position);
+    }
 }

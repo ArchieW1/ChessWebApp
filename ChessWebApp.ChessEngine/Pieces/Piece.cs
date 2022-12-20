@@ -24,7 +24,8 @@ public abstract class Piece
 
         return Symbol;
     }
-
+    
     public abstract IEnumerable<Move> CalculateLegalMoves(Board board);
     protected abstract bool IsExclusion(int currentPosition, int transformation);
+    public abstract Piece MovePiece(Move move);
 }

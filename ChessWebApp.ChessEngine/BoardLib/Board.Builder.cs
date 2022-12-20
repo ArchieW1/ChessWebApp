@@ -7,7 +7,7 @@ public sealed partial class Board
     public static class Builder
     {
         public static Dictionary<int, Piece> BoardConfig { get; } = new();
-        private static Alliance _nextMoveMaker;
+        public static Alliance NextMoveMaker { get; set; }
 
         public static void SetPiece(Piece piece)
         {
@@ -16,7 +16,7 @@ public sealed partial class Board
 
         public static void SetMoveMaker(Alliance alliance)
         {
-            _nextMoveMaker = alliance;
+            NextMoveMaker = alliance;
         }
 
         public static Board Build()
@@ -48,6 +48,7 @@ public sealed partial class Board
             SetPiece(new Pawn(14, bl));
             SetPiece(new Pawn(15, bl));
 
+            // empty squares
             for (int i = 16; i <= 47; i++)
             {
                 SetPiece(new Empty(i));
