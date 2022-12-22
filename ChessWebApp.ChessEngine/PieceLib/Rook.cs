@@ -21,7 +21,7 @@ public sealed class Rook : DirectionalPiece
         };
     }
     
-    public override Piece MovePiece(Move move)
+    public override Rook MovePiece(Move move)
     {
         return new Rook(move.DestinationCoordinate, move.MovedPiece.Alliance);
     }

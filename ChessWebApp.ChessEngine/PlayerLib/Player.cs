@@ -4,37 +4,26 @@ using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.PlayerLib;
 
-public class Player
+public abstract class Player
 {
-    public Alliance Alliance { get; }
-    public List<Piece> ActivePieces =>
-        Alliance switch
-        {
-            Alliance.White => _board.WhitePieces.ToList(),
-            Alliance.Black => _board.BlackPieces.ToList(),
-            _ => throw new IndexOutOfRangeException()
-        };
-    public bool IsInCheck { get; set; }
+    public abstract Alliance Alliance { get; }
+    public abstract IEnumerable<Piece> ActivePieces { get; }
+    public abstract Player Opponent { get; }
+
+    public bool IsInCheck { get; }
     public bool IsInCheckmate => IsInCheck && !HasEscapeMoves();
     public bool IsInStalemate => !IsInCheck && !HasEscapeMoves();
 
-    public Player Opponent => Alliance switch
-    {
-        Alliance.White => _board.BlackPlayer,
-        Alliance.Black => _board.WhitePlayer,
-        _ => throw new IndexOutOfRangeException()
-    };
     public King King { get; }
     public List<Move> LegalMoves { get; }
     
-    private Board _board;
-    
+    protected Board _board;
 
-    public Player(Board board, Alliance alliance, IEnumerable<Move> legalMoves, IEnumerable<Move> opponentsMoves)
+
+    protected Player(Board board, IEnumerable<Move> legalMoves, IEnumerable<Move> opponentsMoves)
     {
         _board = board;
         LegalMoves = legalMoves.ToList();
-        Alliance = alliance;
         King = EstablishKing();
         IsInCheck = CalculateAttacksOnTile(King.Position, opponentsMoves).Any();
     }
@@ -44,7 +33,7 @@ public class Player
         return LegalMoves.Contains(move);
     }
     
-    private static IEnumerable<Move> CalculateAttacksOnTile(int piecePosition, IEnumerable<Move> moves)
+    protected static IEnumerable<Move> CalculateAttacksOnTile(int piecePosition, IEnumerable<Move> moves)
     {
         List<Move> attackMoves = new();
         foreach (Move move in moves)
@@ -57,7 +46,7 @@ public class Player
         return attackMoves;
     }
 
-    private bool HasEscapeMoves()
+    protected bool HasEscapeMoves()
     {
         foreach (Move move in LegalMoves)
         {
@@ -100,4 +89,26 @@ public class Player
         }
         throw new Exception("Not a valid chess board arrangement. There must be a king on the board.");
     }
+
+    protected IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals,
+        IEnumerable<Move> opponentsLegals)
+    {
+        List<Move> kingCastles = new();
+        
+        if (CanShortCastle())
+        {
+            // TODO- Add castle move
+            kingCastles.Add(null);
+        }
+
+        if (CanLongCastle())
+        {
+            kingCastles.Add(null);
+        }
+
+        return kingCastles;
+    }
+
+    protected abstract bool CanShortCastle();
+    protected abstract bool CanLongCastle();
 }

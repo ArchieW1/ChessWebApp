@@ -54,7 +54,7 @@ public sealed class Knight : Piece
         };
     }
     
-    public override Piece MovePiece(Move move)
+    public override Knight MovePiece(Move move)
     {
         return new Knight(move.DestinationCoordinate, move.MovedPiece.Alliance);
     }

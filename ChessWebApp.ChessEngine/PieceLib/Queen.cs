@@ -21,7 +21,7 @@ public sealed class Queen : DirectionalPiece
         };
     }
     
-    public override Piece MovePiece(Move move)
+    public override Queen MovePiece(Move move)
     {
         return new Queen(move.DestinationCoordinate, move.MovedPiece.Alliance);
     }

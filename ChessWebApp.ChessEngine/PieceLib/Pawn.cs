@@ -86,7 +86,7 @@ public sealed class Pawn : Piece
         };
     }
     
-    public override Piece MovePiece(Move move)
+    public override Pawn MovePiece(Move move)
     {
         return new Pawn(move.DestinationCoordinate, move.MovedPiece.Alliance);
     }

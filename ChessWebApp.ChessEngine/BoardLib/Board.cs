@@ -32,8 +32,8 @@ public sealed partial class Board
 
         List<Move> whiteStandardLegalMoves = CalculateLegalMoves(WhitePieces).ToList();
         List<Move> blackStandardLegalMoves = CalculateLegalMoves(BlackPieces).ToList();
-        WhitePlayer = new Player(this, Alliance.White, whiteStandardLegalMoves, blackStandardLegalMoves);
-        BlackPlayer = new Player(this, Alliance.White, blackStandardLegalMoves, whiteStandardLegalMoves);
+        WhitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        BlackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
 
         CurrentPlayer = Builder.NextMoveMaker.ChoosePlayer(WhitePlayer, BlackPlayer);
     }
