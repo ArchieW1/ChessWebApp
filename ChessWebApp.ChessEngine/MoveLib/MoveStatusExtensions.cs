@@ -1,4 +1,4 @@
-namespace ChessWebApp.ChessEngine.PlayerLib;
+namespace ChessWebApp.ChessEngine.MoveLib;
 
 public static class MoveStatusExtensions
 {

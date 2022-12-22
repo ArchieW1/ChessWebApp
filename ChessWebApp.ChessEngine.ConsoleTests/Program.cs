@@ -1,5 +1,5 @@
 ﻿using ChessWebApp.ChessEngine.BoardLib;
 
-Board board = Board.Builder.CreateStandardBoard();
+Board board = Board.CreateStandardBoard();
 
 Console.WriteLine(board.ToString());

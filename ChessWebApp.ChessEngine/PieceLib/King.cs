@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using ChessWebApp.ChessEngine.BoardLib;
+using ChessWebApp.ChessEngine.MoveLib;
 
-namespace ChessWebApp.ChessEngine.Pieces;
+namespace ChessWebApp.ChessEngine.PieceLib;
 
 public sealed class King : Piece
 {
@@ -28,14 +29,14 @@ public sealed class King : Piece
             Tile destinationCoordinateTile = board[destinationCoordinate];
             if (!destinationCoordinateTile.IsTileOccupied)
             {
-                legalMoves.Add(new Move(board, this, destinationCoordinate));
+                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
                 continue;
             }
             
-            Alliance pieceAlliance = destinationCoordinateTile.Piece.Alliance;
-            if (Alliance != pieceAlliance)
+            Piece pieceAtDestination = destinationCoordinateTile.Piece;
+            if (Alliance != pieceAtDestination.Alliance)
             {
-                legalMoves.Add(new Move(board, this, destinationCoordinate));
+                legalMoves.Add(new Attack(board, this, destinationCoordinate, pieceAtDestination));
             }
         }
 

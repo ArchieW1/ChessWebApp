@@ -1,5 +1,6 @@
 using ChessWebApp.ChessEngine.BoardLib;
-using ChessWebApp.ChessEngine.Pieces;
+using ChessWebApp.ChessEngine.MoveLib;
+using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.PlayerLib;
 

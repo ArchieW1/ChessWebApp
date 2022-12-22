@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using ChessWebApp.ChessEngine.BoardLib;
+using ChessWebApp.ChessEngine.MoveLib;
 
-namespace ChessWebApp.ChessEngine.Pieces;
+namespace ChessWebApp.ChessEngine.PieceLib;
 
 public sealed class Pawn : Piece
 {
@@ -30,13 +31,13 @@ public sealed class Pawn : Piece
             if (moveTransformation is 8 && !destinationTile.IsTileOccupied)
             {
                 // TODO- Handle pawn move
-                legalMoves.Add(new Move(board, this, destinationCoordinate));
+                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
                 continue;
             }
 
             if (IsJumpMove(board, moveTransformation, destinationCoordinate))
             {
-                legalMoves.Add(new Move(board, this, destinationCoordinate));
+                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
                 continue;
             }
 
@@ -44,7 +45,7 @@ public sealed class Pawn : Piece
                 destinationTile.Piece.Alliance == Alliance)
             {
                 //TODO- more todo here
-                legalMoves.Add(new Move(board, this, destinationCoordinate));
+                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
                 continue;
             }
             

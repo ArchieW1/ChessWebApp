@@ -1,4 +1,4 @@
-﻿using ChessWebApp.ChessEngine.Pieces;
+﻿using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 

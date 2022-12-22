@@ -1,12 +1,12 @@
 using ChessWebApp.ChessEngine.BoardLib;
 
-namespace ChessWebApp.ChessEngine.PlayerLib;
+namespace ChessWebApp.ChessEngine.MoveLib;
 
 public sealed class MoveTransition
 {
-    public MoveStatus MoveStatus { get; set; }
-    public Move Move { get; set; }
-    public Board Board { get; set; }
+    public MoveStatus MoveStatus { get; }
+    public Move Move { get; }
+    public Board Board { get; }
 
     public MoveTransition(Board transitionBoard, Move move, MoveStatus moveStatus)
     {

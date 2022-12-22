@@ -1,21 +1,22 @@
-﻿using ChessWebApp.ChessEngine.Pieces;
+﻿using ChessWebApp.ChessEngine.BoardLib;
+using ChessWebApp.ChessEngine.PieceLib;
 
-namespace ChessWebApp.ChessEngine.BoardLib;
+namespace ChessWebApp.ChessEngine.MoveLib;
 
-public sealed class Move
+public abstract partial class Move
 {
     public int DestinationCoordinate { get; }
     public Piece MovedPiece { get; }
     private readonly Board _board;
 
-    public Move(Board board, Piece movedPiece, int destinationCoordinate)
+    protected Move(Board board, Piece movedPiece, int destinationCoordinate)
     {
         _board = board;
         MovedPiece = movedPiece;
         DestinationCoordinate = destinationCoordinate;
     }
 
-    public Board Execute()
+    public virtual Board Execute()
     {
         Board.Builder.SetPiece(new Empty(MovedPiece.Position));
         Board.Builder.SetPiece(MovedPiece.MovePiece(this));

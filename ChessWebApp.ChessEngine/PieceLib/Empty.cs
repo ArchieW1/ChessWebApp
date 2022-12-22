@@ -1,6 +1,7 @@
 using ChessWebApp.ChessEngine.BoardLib;
+using ChessWebApp.ChessEngine.MoveLib;
 
-namespace ChessWebApp.ChessEngine.Pieces;
+namespace ChessWebApp.ChessEngine.PieceLib;
 
 public sealed class Empty : Piece
 {
