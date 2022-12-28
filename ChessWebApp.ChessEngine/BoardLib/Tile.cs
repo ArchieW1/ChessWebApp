@@ -8,11 +8,11 @@ public sealed class Tile
     
     public bool IsTileOccupied { get; }
     
-    private int _tileCoordinate;
+    public int TileCoordinate { get; }
 
     public Tile(int tileCoordinate, Piece piece)
     {
-        _tileCoordinate = tileCoordinate;
+        TileCoordinate = tileCoordinate;
         Piece = piece;
         IsTileOccupied = piece is not Empty;
     }

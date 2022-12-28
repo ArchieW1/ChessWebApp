@@ -7,8 +7,8 @@ namespace ChessWebApp.ChessEngine.PlayerLib;
 public sealed class BlackPlayer : Player
 {
     public override Alliance Alliance { get; }
-    public override IEnumerable<Piece> ActivePieces => _board.BlackPieces;
-    public override Player Opponent => _board.WhitePlayer;
+    public override IEnumerable<Piece> ActivePieces => Board.BlackPieces;
+    public override Player Opponent => Board.WhitePlayer;
     
     public BlackPlayer(Board board, IEnumerable<Move> legalMoves, IEnumerable<Move> opponentsMoves) :
         base(board, legalMoves, opponentsMoves)
@@ -16,10 +16,39 @@ public sealed class BlackPlayer : Player
         Alliance = Alliance.Black;
     }
     
+    protected override IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals, IEnumerable<Move> opponentsLegals)
+    {
+        List<Move> kingCastles = new();
+        
+        if (CanShortCastle())
+        {
+            Tile rookTile = Board[7];
+            if (rookTile.Piece is not Rook rook)
+            {
+                throw new ApplicationException("If can short castle the piece in the rook tile should be a rook");
+            }
+            
+            kingCastles.Add(new KingSideCastle(Board, King, 6, rook, rookTile.TileCoordinate, 5));
+        }
+
+        if (CanLongCastle())
+        {
+            Tile rookTile = Board[0];
+            if (rookTile.Piece is not Rook rook)
+            {
+                throw new ApplicationException("If can short castle the piece in the rook tile should be a rook");
+            }
+            
+            kingCastles.Add(new QueenSideCastle(Board, King, 2, rook, rookTile.TileCoordinate, 3));
+        }
+
+        return kingCastles;
+    }
+
     protected override bool CanShortCastle()
     {
-        Tile rookTile = _board[7];
-        return !_board[5].IsTileOccupied && !_board[6].IsTileOccupied &&
+        Tile rookTile = Board[7];
+        return !Board[5].IsTileOccupied && !Board[6].IsTileOccupied &&
                rookTile.IsTileOccupied &&
                rookTile.Piece.IsFirstMove &&
                !CalculateAttacksOnTile(6, Opponent.LegalMoves).Any() &&
@@ -28,8 +57,8 @@ public sealed class BlackPlayer : Player
 
     protected override bool CanLongCastle()
     {
-        Tile rookTile = _board[0];
-        return !_board[1].IsTileOccupied && !_board[2].IsTileOccupied && !_board[3].IsTileOccupied &&
+        Tile rookTile = Board[0];
+        return !Board[1].IsTileOccupied && !Board[2].IsTileOccupied && !Board[3].IsTileOccupied &&
                rookTile.IsTileOccupied &&
                rookTile.Piece.IsFirstMove &&
                !CalculateAttacksOnTile(2, Opponent.LegalMoves).Any() &&

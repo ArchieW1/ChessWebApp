@@ -15,17 +15,22 @@ public abstract class Player
     public bool IsInStalemate => !IsInCheck && !HasEscapeMoves();
 
     public King King { get; }
-    public List<Move> LegalMoves { get; }
+    public IEnumerable<Move> LegalMoves { get; }
     
-    protected Board _board;
+    protected Board Board;
 
 
     protected Player(Board board, IEnumerable<Move> legalMoves, IEnumerable<Move> opponentsMoves)
     {
-        _board = board;
-        LegalMoves = legalMoves.ToList();
+        // avoiding multiple enumeration with seemingly redundant cast.
+        List<Move> legalMovesList = legalMoves.ToList();
+        List<Move> opponentsMovesList = opponentsMoves.ToList();
+        
+        Board = board;
+        legalMovesList.AddRange(CalculateKingCastles(legalMovesList, opponentsMovesList));
+        LegalMoves = legalMovesList;
         King = EstablishKing();
-        IsInCheck = CalculateAttacksOnTile(King.Position, opponentsMoves).Any();
+        IsInCheck = CalculateAttacksOnTile(King.Position, opponentsMovesList).Any();
     }
 
     public bool IsLegalMove(Move move)
@@ -63,7 +68,7 @@ public abstract class Player
     {
         if (!IsLegalMove(move))
         {
-            return new MoveTransition(_board, move, MoveStatus.Illegal);
+            return new MoveTransition(Board, move, MoveStatus.Illegal);
         }
 
         Board transitionBoard = move.Execute();
@@ -72,7 +77,7 @@ public abstract class Player
 
         if (kingAttacks.Any())
         {
-            return new MoveTransition(_board, move, MoveStatus.LeavesPlayerInCheck);
+            return new MoveTransition(Board, move, MoveStatus.LeavesPlayerInCheck);
         }
 
         return new MoveTransition(transitionBoard, move, MoveStatus.Done);
@@ -90,24 +95,8 @@ public abstract class Player
         throw new Exception("Not a valid chess board arrangement. There must be a king on the board.");
     }
 
-    protected IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals,
-        IEnumerable<Move> opponentsLegals)
-    {
-        List<Move> kingCastles = new();
-        
-        if (CanShortCastle())
-        {
-            // TODO- Add castle move
-            kingCastles.Add(null);
-        }
-
-        if (CanLongCastle())
-        {
-            kingCastles.Add(null);
-        }
-
-        return kingCastles;
-    }
+    protected abstract IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals,
+        IEnumerable<Move> opponentsLegals);
 
     protected abstract bool CanShortCastle();
     protected abstract bool CanLongCastle();

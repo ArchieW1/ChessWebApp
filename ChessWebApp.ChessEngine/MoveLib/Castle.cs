@@ -24,5 +24,6 @@ public abstract class Castle : Move
         Board.Builder.SetPiece(MovedPiece.MovePiece(this));
         Board.Builder.SetPiece(new Rook(RookDestination, Rook.Alliance));
         Board.Builder.SetMoveMaker(Board.CurrentPlayer.Opponent.Alliance);
+        return Board.Builder.Build();
     }
 }
