@@ -1,11 +1,6 @@
 ﻿@using ChessWebApp.UI.Services
 @inject IBoardService _boardService
 
-<div id="@Coordinate" class="piece-box @_colour-box" 
-     @onmouseenter="MouseEnterHandler" @onmouseleave="MouseLeaveHandler" @onclick="ClickHandler">
-    @if (Piece is not null)
-    {
-        <img class="piece" src=@($"img/{Piece}.png") alt=@Piece/>
-    }
-    <span class="piece-box-text">@Coordinate</span>
+<div id="" class="piece-box @_colour-box">
+    <span class="piece-box-text"></span>
 </div>

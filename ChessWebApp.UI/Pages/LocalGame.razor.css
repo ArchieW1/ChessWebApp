@@ -2,7 +2,7 @@
     user-select: none;
 }
 
-.offline-page{
+.local-game-page{
 	margin: 0;
 	padding: 0;
 	display: flex;
@@ -11,10 +11,10 @@
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
 	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
-  background-position: center;
-  background-repeat: repeat;
-  background-size: 4%;
-  background-color: #1f2029;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 4%;
+    background-color: #1f2029;
 }
 
 @keyframes fadeIn {
@@ -25,8 +25,6 @@
 .fade-in {
     animation: fadeIn 1s ease
 }
-
-/** #################################### */
 
 .chess-message .check-mate-message {
     position: absolute;

@@ -7,12 +7,12 @@ public sealed partial class Board : ComponentBase
     [Parameter]
     public bool Reverse { get; set; }
     
-    private string GetReversed => Reverse ? "-reverse" : "";
+    private string ReversedCss => Reverse ? "-reverse" : "";
     
     private int _count = 0;
     private bool IsPieceBoxWhite(int i)
     {
-        if (i % 8 == 0)
+        if (i % _boardService.NumberOfColumns == 0)
         {
             _count++;
         }
