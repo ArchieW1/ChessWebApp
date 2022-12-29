@@ -29,6 +29,7 @@ public sealed partial class LoginForm : ComponentBase
         string stringJwt = await response.Content.ReadAsStringAsync();
         Jwt jwt = JsonConvert.DeserializeObject<Jwt>(stringJwt);
         await _browserStorage.SetItemAsync("token", jwt.JwtToken);
+        await _browserStorage.SetItemAsync("username", _userLoginModel.Username);
         _navManager.NavigateTo("/");
     }
 }

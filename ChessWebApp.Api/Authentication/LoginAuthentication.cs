@@ -42,7 +42,7 @@ public sealed class LoginAuthentication
                 new(JwtRegisteredClaimNames.Email, user.Email.Value),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             }),
-            Expires = DateTime.Now.AddMinutes(5),
+            Expires = DateTime.Now.AddMonths(6),
             Audience = audience,
             Issuer = issuer,
             SigningCredentials = credentials
