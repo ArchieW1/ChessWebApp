@@ -31,4 +31,8 @@
     <ProjectReference Include="..\ChessWebApp.ChessEngine\ChessWebApp.ChessEngine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="obj\Debug" />
+  </ItemGroup>
+
 </Project>
