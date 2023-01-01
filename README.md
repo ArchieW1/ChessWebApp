@@ -19,7 +19,7 @@ A Level NEA Work
     - [x] Return token to user
     - [x] Handle tokens
 - [ ] Chess Page
-  - [ ] Chess Logic
-    - [ ] A long list of stuff I'm not writing here
+  - [x] Chess Logic
+    - [x] A long list of stuff I'm not writing here
   - [ ] Chess AI
 - [ ] Celebrate a job well done
