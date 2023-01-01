@@ -5,7 +5,7 @@ namespace ChessWebApp.ChessEngine.PieceLib;
 
 public sealed class Empty : Piece
 {
-    public Empty(int position) : base(position, Alliance.None)
+    public Empty(int position) : base(position, Alliance.None, false)
     {
         Symbol = "-";
     }

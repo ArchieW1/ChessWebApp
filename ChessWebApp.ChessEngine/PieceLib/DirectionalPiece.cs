@@ -8,13 +8,14 @@ public abstract class DirectionalPiece : Piece
 {
     protected int[] CandidateMoveVectorTransformations { get; init; } = Array.Empty<int>();
 
-    protected DirectionalPiece(int position, Alliance alliance) : base(position, alliance)
+    protected DirectionalPiece(int position, Alliance alliance, bool isFirstMove) : base(position, alliance, 
+        isFirstMove)
     {
     }
 
     public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
-        List<Move> legalMoves = new List<Move>();
+        List<Move> legalMoves = new();
 
         foreach (int vectorTransformation in CandidateMoveVectorTransformations)
         {

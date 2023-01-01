@@ -1,10 +1,12 @@
-﻿using ChessWebApp.UI.Models;
+﻿using ChessWebApp.ChessEngine.BoardLib;
+using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.UI.Services;
 
 public interface IBoardService
 {
-    public int NumberOfTiles { get; }
-    public int NumberOfColumns { get; }
-    public void MovePiece();
+    public Board Board { get; set; }
+    public Tile? SourceTile { get; set; }
+    public Tile? DestinationTile { get; set; }
+    public Piece? HumanMovedPiece { get; set; }
 }

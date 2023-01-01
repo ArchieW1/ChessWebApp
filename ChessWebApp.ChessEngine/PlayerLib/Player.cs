@@ -64,7 +64,7 @@ public abstract class Player
         return false;
     }
 
-    private MoveTransition MakeMove(Move move)
+    public MoveTransition MakeMove(Move move)
     {
         if (!IsLegalMove(move))
         {

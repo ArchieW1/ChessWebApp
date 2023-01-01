@@ -10,7 +10,7 @@ public abstract class Castle : Move
     protected int RookDestination { get; }
 
     protected Castle(Board board, Piece movedPiece, int destinationCoordinate, Rook rook, int rookStart,
-        int rookDestination) : base(board, movedPiece, destinationCoordinate, true)
+        int rookDestination) : base(board, movedPiece, destinationCoordinate)
     {
         Rook = rook;
         RookStart = rookStart;

@@ -7,15 +7,15 @@ namespace ChessWebApp.ChessEngine.PieceLib;
 public sealed class Pawn : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {7, 8, 9, 16};
-    
-    public Pawn(int position, Alliance alliance) : base(position, alliance)
+
+    public Pawn(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, false)
     {
         Symbol = "P";
     }
     
     public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
-        List<Move> legalMoves = new List<Move>();
+        List<Move> legalMoves = new();
 
         foreach (int moveTransformation in CandidateMoveTransformations)
         {
@@ -30,22 +30,20 @@ public sealed class Pawn : Piece
 
             if (moveTransformation is 8 && !destinationTile.IsTileOccupied)
             {
-                // TODO- Handle pawn move
-                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
+                legalMoves.Add(new PawnMove(board, this, destinationCoordinate));
                 continue;
             }
 
             if (IsJumpMove(board, moveTransformation, destinationCoordinate))
             {
-                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
+                legalMoves.Add(new PawnJump(board, this, destinationCoordinate));
                 continue;
             }
 
             if (moveTransformation is 7 or 9 && destinationTile.IsTileOccupied && 
-                destinationTile.Piece.Alliance == Alliance)
+                destinationTile.Piece.Alliance != Alliance)
             {
-                //TODO- more todo here
-                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
+                legalMoves.Add(new PawnAttack(board, this, destinationCoordinate, destinationTile.Piece));
                 continue;
             }
             
@@ -58,15 +56,15 @@ public sealed class Pawn : Piece
     {
         int behindDestinationCoordinate = Position + Alliance.GetDirection() * 8;
         return 
+            moveTransformation == 16 &&
+            IsFirstMove &&
             (
                 (
-                    moveTransformation == 16 &&
-                    IsFirstMove &&
-                    Position.ToRow() == Board.Utils.Row.Second &&
+                    Position.ToColumn() == Board.Utils.Column.Second &&
                     Alliance == Alliance.Black
                 ) ||
                 (
-                    Position.ToRow() == Board.Utils.Row.Seventh && 
+                    Position.ToColumn() == Board.Utils.Column.Seventh && 
                     Alliance == Alliance.White
                 )
             ) && 

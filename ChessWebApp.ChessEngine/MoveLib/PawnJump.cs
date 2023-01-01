@@ -21,6 +21,7 @@ public sealed class PawnJump : Move
 
         Pawn movedPawn = pawn.MovePiece(this);
         
+        Board.Builder.SetPiece(new Empty(MovedPiece.Position));
         Board.Builder.SetPiece(movedPawn);
         Board.Builder.SetEnPassantPawn(movedPawn);
         Board.Builder.SetMoveMaker(Board.CurrentPlayer.Opponent.Alliance);

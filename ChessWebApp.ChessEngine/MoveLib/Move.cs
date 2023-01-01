@@ -7,15 +7,15 @@ public abstract partial class Move
 {
     public int DestinationCoordinate { get; }
     public Piece MovedPiece { get; }
-    public bool IsCastleMove { get; }
+    public bool IsFirstMove { get; }
     protected Board Board { get; }
-
-    protected Move(Board board, Piece movedPiece, int destinationCoordinate, bool isCastleMove = false)
+    
+    protected Move(Board board, Piece movedPiece, int destinationCoordinate)
     {
         Board = board;
         MovedPiece = movedPiece;
         DestinationCoordinate = destinationCoordinate;
-        IsCastleMove = isCastleMove;
+        IsFirstMove = movedPiece.IsFirstMove;
     }
 
     public virtual Board Execute()

@@ -1,10 +1,11 @@
-﻿using ChessWebApp.ChessEngine.MoveLib;
+﻿using System.Collections;
+using ChessWebApp.ChessEngine.MoveLib;
 using ChessWebApp.ChessEngine.PieceLib;
 using ChessWebApp.ChessEngine.PlayerLib;
 
 namespace ChessWebApp.ChessEngine.BoardLib;
 
-public sealed partial class Board
+public sealed partial class Board : IEnumerable<Tile>
 {
     public IEnumerable<Piece> WhitePieces { get; }
     public IEnumerable<Piece> BlackPieces { get; }
@@ -40,6 +41,11 @@ public sealed partial class Board
 
     public Tile this[int index] => _tiles[index];
 
+    public IEnumerator<Tile> GetEnumerator()
+    {
+        return _tiles.GetEnumerator();
+    }
+
     public override string ToString()
     {
         string builder = string.Empty;
@@ -55,7 +61,12 @@ public sealed partial class Board
 
         return builder;
     }
-    
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
     public static Board CreateStandardBoard() 
     {
         // abbreviate for repetitions sake

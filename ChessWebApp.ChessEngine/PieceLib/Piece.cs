@@ -7,13 +7,14 @@ public abstract class Piece
 {
     public Alliance Alliance { get; }
     public int Position { get; }
-    public bool IsFirstMove => false;
+    public bool IsFirstMove { get; }
     protected string Symbol { private get; init; } = string.Empty;
 
-    protected Piece(int position, Alliance alliance)
+    protected Piece(int position, Alliance alliance, bool isFirstMove)
     {
         Position = position;
         Alliance = alliance;
+        IsFirstMove = isFirstMove;
     }
     
     public override string ToString()

@@ -8,14 +8,14 @@ public sealed class Knight : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {-17, -15, -10, -6, 6, 10, 15, 17};
     
-    public Knight(int position, Alliance alliance) : base(position, alliance)
+    public Knight(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, isFirstMove)
     {
         Symbol = "N";
     }
 
     public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
-        List<Move> legalMoves = new List<Move>();
+        List<Move> legalMoves = new();
         
         foreach (int moveTransformation in CandidateMoveTransformations)
         {

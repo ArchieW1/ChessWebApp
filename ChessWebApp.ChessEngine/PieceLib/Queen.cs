@@ -5,9 +5,9 @@ namespace ChessWebApp.ChessEngine.PieceLib;
 
 public sealed class Queen : DirectionalPiece
 {
-    public Queen(int position, Alliance alliance) : base(position, alliance)
+    public Queen(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, isFirstMove)
     {
-        CandidateMoveVectorTransformations = new[] {-9, -7, 7, 9};
+        CandidateMoveVectorTransformations = new[] {-9, -8, -7, -1, 1, 7, 8, 9};
         Symbol = "Q";
     }
 

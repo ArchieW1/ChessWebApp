@@ -8,7 +8,7 @@ public sealed class King : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {-9, -8, -7, -1, 1, 7, 8, 9};
     
-    public King(int position, Alliance alliance) : base(position, alliance)
+    public King(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, isFirstMove)
     {
         Symbol = "K";
     }

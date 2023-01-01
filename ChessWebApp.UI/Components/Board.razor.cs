@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using ChessWebApp.ChessEngine.BoardLib;
+using ChessWebApp.ChessEngine.MoveLib;
+using Microsoft.AspNetCore.Components;
 
 namespace ChessWebApp.UI.Components;
 
@@ -9,19 +11,37 @@ public sealed partial class Board : ComponentBase
     
     private string ReversedCss => Reverse ? "-reverse" : "";
     
-    private int _count = 0;
-    private bool IsPieceBoxWhite(int i)
+    private static bool IsPieceBoxWhite(int i)
     {
-        if (i % _boardService.NumberOfColumns == 0)
+        return (i + i / 8) % 2 == 0;
+    }
+
+    private bool IsTileSelected(Tile tile)
+    {
+        return _board.SourceTile is not null &&
+               _board.SourceTile.TileCoordinate == tile.TileCoordinate;
+    }
+
+    private bool IsTileLegalMove(Tile tile)
+    {
+        if (_board.SourceTile is null)
         {
-            _count++;
+            return false;
         }
 
-        if (_count % 2 == 0)
+        if (_board.SourceTile.Piece.Alliance != _board.Board.CurrentPlayer.Alliance)
         {
-            return i % 2 != 0;
+            return false;
         }
-        
-        return i % 2 == 0;
+
+        foreach (Move move in _board.SourceTile.Piece.CalculateLegalMoves(_board.Board))
+        {
+            if (tile.TileCoordinate == move.DestinationCoordinate)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
