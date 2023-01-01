@@ -28,14 +28,14 @@ public sealed class Knight : Piece
             Tile destinationCoordinateTile = board[destinationCoordinate];
             if (!destinationCoordinateTile.IsTileOccupied)
             {
-                legalMoves.Add(new StandardMove(board, this, destinationCoordinate));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
                 continue;
             }
             
             Piece pieceAtDestination = destinationCoordinateTile.Piece;
             if (Alliance != pieceAtDestination.Alliance)
             {
-                legalMoves.Add(new Attack(board, this, destinationCoordinate, pieceAtDestination));
+                legalMoves.Add(new Move(board, this, destinationCoordinate));
             }
         }
         

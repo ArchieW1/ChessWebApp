@@ -2,7 +2,7 @@ using ChessWebApp.ChessEngine.BoardLib;
 
 namespace ChessWebApp.ChessEngine.MoveLib;
 
-public abstract partial class Move
+public partial class Move
 {
     public static class Builder
     {

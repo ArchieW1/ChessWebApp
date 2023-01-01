@@ -3,19 +3,27 @@ using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.MoveLib;
 
-public abstract partial class Move
+public partial class Move
 {
     public int DestinationCoordinate { get; }
     public Piece MovedPiece { get; }
     public bool IsFirstMove { get; }
     protected Board Board { get; }
     
-    protected Move(Board board, Piece movedPiece, int destinationCoordinate)
+    public Move(Board board, Piece movedPiece, int destinationCoordinate)
     {
         Board = board;
         MovedPiece = movedPiece;
         DestinationCoordinate = destinationCoordinate;
         IsFirstMove = movedPiece.IsFirstMove;
+    }
+    
+    protected Move(Board board, int destinationCoordinate)
+    {
+        Board = board;
+        MovedPiece = null;
+        DestinationCoordinate = destinationCoordinate;
+        IsFirstMove = false;
     }
 
     public virtual Board Execute()

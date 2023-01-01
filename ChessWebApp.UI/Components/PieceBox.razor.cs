@@ -95,7 +95,7 @@ public sealed partial class PieceBox : ComponentBase
         Move move = Move.Builder.CreateMove(_board.Board, _board.SourceTile.TileCoordinate,
             _board.DestinationTile.TileCoordinate);
         MoveTransition transition = _board.Board.CurrentPlayer.MakeMove(move);
-        if (transition.MoveStatus.IsDone())
+        if (transition.MoveStatus == MoveStatus.Done)
         {
             _board.Board = transition.Board;
         }

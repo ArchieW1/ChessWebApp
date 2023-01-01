@@ -56,7 +56,7 @@ public abstract class Player
         foreach (Move move in LegalMoves)
         {
             MoveTransition transition = MakeMove(move);
-            if (transition.MoveStatus.IsDone())
+            if (transition.MoveStatus == MoveStatus.Done)
             {
                 return true;
             }

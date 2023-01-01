@@ -8,7 +8,7 @@ public sealed class Pawn : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {7, 8, 9, 16};
 
-    public Pawn(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, false)
+    public Pawn(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, isFirstMove)
     {
         Symbol = "P";
     }
@@ -36,14 +36,14 @@ public sealed class Pawn : Piece
 
             if (IsJumpMove(board, moveTransformation, destinationCoordinate))
             {
-                legalMoves.Add(new PawnJump(board, this, destinationCoordinate));
+                legalMoves.Add(new PawnMove(board, this, destinationCoordinate));
                 continue;
             }
 
             if (moveTransformation is 7 or 9 && destinationTile.IsTileOccupied && 
                 destinationTile.Piece.Alliance != Alliance)
             {
-                legalMoves.Add(new PawnAttack(board, this, destinationCoordinate, destinationTile.Piece));
+                legalMoves.Add(new PawnMove(board, this, destinationCoordinate));
                 continue;
             }
             

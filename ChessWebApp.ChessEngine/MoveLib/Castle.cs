@@ -3,13 +3,13 @@ using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.MoveLib;
 
-public abstract class Castle : Move
+public class Castle : Move
 {
     public Rook Rook { get; }
-    protected int RookStart { get; }
-    protected int RookDestination { get; }
+    public int RookStart { get; }
+    public int RookDestination { get; }
 
-    protected Castle(Board board, Piece movedPiece, int destinationCoordinate, Rook rook, int rookStart,
+    public Castle(Board board, Piece movedPiece, int destinationCoordinate, Rook rook, int rookStart,
         int rookDestination) : base(board, movedPiece, destinationCoordinate)
     {
         Rook = rook;

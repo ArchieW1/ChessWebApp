@@ -28,7 +28,7 @@ public sealed class BlackPlayer : Player
                 throw new ApplicationException("If can short castle the piece in the rook tile should be a rook");
             }
             
-            kingCastles.Add(new KingSideCastle(Board, King, 6, rook, rookTile.TileCoordinate, 5));
+            kingCastles.Add(new Castle(Board, King, 6, rook, rookTile.TileCoordinate, 5));
         }
 
         if (CanLongCastle())
@@ -39,7 +39,7 @@ public sealed class BlackPlayer : Player
                 throw new ApplicationException("If can short castle the piece in the rook tile should be a rook");
             }
             
-            kingCastles.Add(new QueenSideCastle(Board, King, 2, rook, rookTile.TileCoordinate, 3));
+            kingCastles.Add(new Castle(Board, King, 2, rook, rookTile.TileCoordinate, 3));
         }
 
         return kingCastles;
