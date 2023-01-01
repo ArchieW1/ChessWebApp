@@ -22,4 +22,7 @@ A Level NEA Work
   - [x] Chess Logic
     - [x] A long list of stuff I'm not writing here
   - [ ] Chess AI
+- [ ] Search Page
+  - [ ] Allow logged in player to search through players
+  - [ ] Upon player selection show a stat page for that user 
 - [ ] Celebrate a job well done
