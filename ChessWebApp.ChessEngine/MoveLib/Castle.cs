@@ -3,7 +3,7 @@ using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.MoveLib;
 
-public class Castle : Move
+public sealed class Castle : Move
 {
     public Rook Rook { get; }
     public int RookStart { get; }

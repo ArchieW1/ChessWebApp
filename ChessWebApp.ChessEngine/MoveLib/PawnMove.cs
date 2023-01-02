@@ -3,7 +3,7 @@ using ChessWebApp.ChessEngine.PieceLib;
 
 namespace ChessWebApp.ChessEngine.MoveLib;
 
-public class PawnMove : Move
+public sealed class PawnMove : Move
 {
     public PawnMove(Board board, Piece movedPiece, int destinationCoordinate) :
         base(board, movedPiece, destinationCoordinate)
