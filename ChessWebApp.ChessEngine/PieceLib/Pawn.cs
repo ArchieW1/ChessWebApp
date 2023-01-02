@@ -74,11 +74,11 @@ public sealed class Pawn : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return currentPosition.ToColumn() switch
+        return currentPosition.ToRow() switch
         {
-            Board.Utils.Column.First => transformation is 7 && Alliance == Alliance.Black || 
+            Board.Utils.Row.First => transformation is 7 && Alliance == Alliance.Black || 
                                        transformation == 9 && Alliance == Alliance.White,
-            Board.Utils.Column.Eighth => transformation is 7 && Alliance == Alliance.White || 
+            Board.Utils.Row.Eighth => transformation is 7 && Alliance == Alliance.White || 
                                         transformation == 9 && Alliance == Alliance.Black,
             _ => false
         };

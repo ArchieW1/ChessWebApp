@@ -13,10 +13,10 @@ public sealed class Rook : DirectionalPiece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return currentPosition.ToColumn() switch
+        return currentPosition.ToRow() switch
         {
-            Board.Utils.Column.First => transformation is -1,
-            Board.Utils.Column.Eighth => transformation is 1,
+            Board.Utils.Row.First => transformation is -1,
+            Board.Utils.Row.Eighth => transformation is 1,
             _ => false
         };
     }

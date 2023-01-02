@@ -20,8 +20,13 @@ public class Castle : Move
     public override Board Execute()
     {
         KeepStateExcludingPieces(MovedPiece, Rook);
+
+        if (MovedPiece is not King king)
+        {
+            throw new Exception("Must be king to castle.");
+        }
         
-        Board.Builder.SetPiece(MovedPiece.MovePiece(this));
+        Board.Builder.SetPiece(king.MovePiece(this));
         Board.Builder.SetPiece(new Rook(RookDestination, Rook.Alliance));
         Board.Builder.SetMoveMaker(Board.CurrentPlayer.Opponent.Alliance);
         return Board.Builder.Build();

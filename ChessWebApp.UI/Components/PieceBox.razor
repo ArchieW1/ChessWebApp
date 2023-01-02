@@ -4,7 +4,8 @@
 
 @inject IBoardService _board
 
-<div id="@Tile.TileCoordinate" class="piece-box @_colour-box @SelectedCss @LegalMoveCss" @onclick="OnClick">
+<div id="@Tile.TileCoordinate" class="piece-box @_colour-box @SelectedCss @LegalMoveCss" @onclick="HandleLeftClick"
+     @oncontextmenu="HandleRightClick" @oncontextmenu:preventDefault="true">
     @if (Tile.Piece is not Empty)
     {
         <img class="piece" src=@($"img/{PieceColour}-{PieceSymbol}.png") alt=@PieceSymbol/>

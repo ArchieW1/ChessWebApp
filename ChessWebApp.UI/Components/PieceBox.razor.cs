@@ -42,29 +42,23 @@ public sealed partial class PieceBox : ComponentBase
         _colour = IsWhite ? "white" : "black";
     }
 
-    private void OnClick(MouseEventArgs e)
+    private void HandleLeftClick()
     {
-        switch (e.Button)
+        if (_board.SourceTile is null)
         {
-            // left mouse
-            case 0:
-                if (_board.SourceTile is null)
-                {
-                    SelectPiece();
-                }
-                else
-                {
-                    MovePiece();
-                }
-                OnUpdate.InvokeAsync(null);
-                break;
-                
-            // right mouse
-            case 2:
-                UnSelectPiece();
-                OnUpdate.InvokeAsync(null);
-                break;
+            SelectPiece();
         }
+        else
+        {
+            MovePiece();
+        }
+        OnUpdate.InvokeAsync(null);
+    }
+
+    private void HandleRightClick()
+    {
+        UnSelectPiece();
+        OnUpdate.InvokeAsync(null);
     }
 
     private void UnSelectPiece()

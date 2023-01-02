@@ -7,12 +7,16 @@ namespace ChessWebApp.ChessEngine.PieceLib;
 public sealed class King : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {-9, -8, -7, -1, 1, 7, 8, 9};
-    
-    public King(int position, Alliance alliance, bool isFirstMove = true) : base(position, alliance, isFirstMove)
+    public bool IsCastled { get; }
+    public bool IsKingSideCastleCapable { get; }
+
+    public King(int position, Alliance alliance, bool isFirstMove = true, bool isCastled = false) 
+        : base(position, alliance, isFirstMove)
     {
         Symbol = "K";
+        IsCastled = isCastled;
     }
-   
+
     public override IEnumerable<Move> CalculateLegalMoves(Board board)
     {
         List<Move> legalMoves = new();
@@ -45,10 +49,10 @@ public sealed class King : Piece
 
     protected override bool IsExclusion(int currentPosition, int transformation)
     {
-        return currentPosition.ToColumn() switch
+        return currentPosition.ToRow() switch
         {
-            Board.Utils.Column.First => transformation is -9 or -1 or 7,
-            Board.Utils.Column.Eighth => transformation is -7 or 1 or 9,
+            Board.Utils.Row.First => transformation is -9 or -1 or 7,
+            Board.Utils.Row.Eighth => transformation is -7 or 1 or 9,
             _ => false
         };
     }
