@@ -17,9 +17,8 @@ public abstract class Player
     public King King { get; }
     public IEnumerable<Move> LegalMoves { get; }
     
-    protected Board Board;
-
-
+    protected Board Board { get; }
+    
     protected Player(Board board, IEnumerable<Move> legalMoves, IEnumerable<Move> opponentsMoves)
     {
         // avoiding multiple enumeration with seemingly redundant cast.
@@ -27,9 +26,9 @@ public abstract class Player
         List<Move> opponentsMovesList = opponentsMoves.ToList();
         
         Board = board;
-        legalMovesList.AddRange(CalculateKingCastles(legalMovesList, opponentsMovesList));
-        LegalMoves = legalMovesList;
         King = EstablishKing();
+        legalMovesList.AddRange(CalculateKingCastles(opponentsMovesList));
+        LegalMoves = legalMovesList;
         IsInCheck = CalculateAttacksOnTile(King.Position, opponentsMovesList).Any();
     }
 
@@ -66,7 +65,7 @@ public abstract class Player
 
     public MoveTransition MakeMove(Move move)
     {
-        if (!IsLegalMove(move))
+        if (move is EmptyMove || !IsLegalMove(move))
         {
             return new MoveTransition(Board, move, MoveStatus.Illegal);
         }
@@ -95,9 +94,8 @@ public abstract class Player
         throw new Exception("Not a valid chess board arrangement. There must be a king on the board.");
     }
 
-    protected abstract IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals,
-        IEnumerable<Move> opponentsLegals);
+    protected abstract IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> opponentsLegals);
 
-    protected abstract bool CanShortCastle();
-    protected abstract bool CanLongCastle();
+    protected abstract bool CanShortCastle(IEnumerable<Move> opponentsLegals);
+    protected abstract bool CanLongCastle(IEnumerable<Move> opponentsLegals);
 }

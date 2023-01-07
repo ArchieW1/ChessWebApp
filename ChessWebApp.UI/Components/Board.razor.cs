@@ -28,15 +28,11 @@ public sealed partial class Board : ComponentBase
         {
             return false;
         }
-
-        if (_board.SourceTile.Piece.Alliance != _board.Board.CurrentPlayer.Alliance)
+        
+        foreach (Move move in _board.Board.CurrentPlayer.LegalMoves)
         {
-            return false;
-        }
-
-        foreach (Move move in _board.SourceTile.Piece.CalculateLegalMoves(_board.Board))
-        {
-            if (tile.TileCoordinate == move.DestinationCoordinate)
+            if (tile.TileCoordinate == move.DestinationCoordinate &&
+                move.MovedPiece.Position == _board.SourceTile.Piece.Position)
             {
                 return true;
             }

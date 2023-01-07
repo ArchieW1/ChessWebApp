@@ -16,11 +16,13 @@ public sealed class WhitePlayer : Player
         Alliance = Alliance.White;
     }
 
-    protected override IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals, IEnumerable<Move> opponentsLegals)
+    protected override IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> opponentsLegals)
     {
         List<Move> kingCastles = new();
+
+        List<Move> opponentsLegalsList = opponentsLegals.ToList();
         
-        if (CanShortCastle())
+        if (CanShortCastle(opponentsLegalsList))
         {
             Tile rookTile = Board[63];
             if (rookTile.Piece is not Rook rook)
@@ -31,7 +33,7 @@ public sealed class WhitePlayer : Player
             kingCastles.Add(new Castle(Board, King, 62, rook, rookTile.TileCoordinate, 61));
         }
 
-        if (CanLongCastle())
+        if (CanLongCastle(opponentsLegalsList))
         {
             Tile rookTile = Board[56];
             if (rookTile.Piece is not Rook rook)
@@ -45,23 +47,27 @@ public sealed class WhitePlayer : Player
         return kingCastles;
     }
 
-    protected override bool CanShortCastle()
+    protected override bool CanShortCastle(IEnumerable<Move> opponentsLegals)
     {
-        Tile rookTile = Board[63];
-        return !Board[61].IsTileOccupied && !Board[62].IsTileOccupied &&
-               rookTile.IsTileOccupied &&
-               rookTile.Piece.IsFirstMove &&
-               !CalculateAttacksOnTile(62, Opponent.LegalMoves).Any() &&
-               rookTile.Piece is Rook;
+        Board board = Board;
+        Tile rookTile = board[63];
+        Tile tile1 = board[61];
+        Tile tile2 = board[62];
+        bool b1 = !tile1.IsTileOccupied && !tile2.IsTileOccupied;
+        bool b2 = rookTile.IsTileOccupied;
+        bool b3 = rookTile.Piece.IsFirstMove;
+        bool b4 = !CalculateAttacksOnTile(62, opponentsLegals).Any();
+        bool b5 = rookTile.Piece is Rook;
+        return b1 && b2 && b3 && b4 && b5;
     }
 
-    protected override bool CanLongCastle()
+    protected override bool CanLongCastle(IEnumerable<Move> opponentsLegals)
     {
         Tile rookTile = Board[56];
         return !Board[59].IsTileOccupied && !Board[58].IsTileOccupied && !Board[57].IsTileOccupied &&
                rookTile.IsTileOccupied &&
                rookTile.Piece.IsFirstMove &&
-               !CalculateAttacksOnTile(58, Opponent.LegalMoves).Any() &&
+               !CalculateAttacksOnTile(58, opponentsLegals).Any() &&
                rookTile.Piece is Rook;
     }
 }

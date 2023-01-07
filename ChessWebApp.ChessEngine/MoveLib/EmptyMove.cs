@@ -4,7 +4,7 @@ namespace ChessWebApp.ChessEngine.MoveLib;
 
 public sealed class EmptyMove : Move
 {
-    public EmptyMove() : base(default, default)
+    public EmptyMove() : base(default)
     {
     }
 

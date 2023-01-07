@@ -16,11 +16,13 @@ public sealed class BlackPlayer : Player
         Alliance = Alliance.Black;
     }
     
-    protected override IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> playerLegals, IEnumerable<Move> opponentsLegals)
+    protected override IEnumerable<Move> CalculateKingCastles(IEnumerable<Move> opponentsLegals)
     {
         List<Move> kingCastles = new();
+
+        List<Move> opponentsLegalMovesList = opponentsLegals.ToList();
         
-        if (CanShortCastle())
+        if (CanShortCastle(opponentsLegalMovesList))
         {
             Tile rookTile = Board[7];
             if (rookTile.Piece is not Rook rook)
@@ -31,7 +33,7 @@ public sealed class BlackPlayer : Player
             kingCastles.Add(new Castle(Board, King, 6, rook, rookTile.TileCoordinate, 5));
         }
 
-        if (CanLongCastle())
+        if (CanLongCastle(opponentsLegalMovesList))
         {
             Tile rookTile = Board[0];
             if (rookTile.Piece is not Rook rook)
@@ -45,23 +47,23 @@ public sealed class BlackPlayer : Player
         return kingCastles;
     }
 
-    protected override bool CanShortCastle()
+    protected override bool CanShortCastle(IEnumerable<Move> opponentsLegals)
     {
         Tile rookTile = Board[7];
         return !Board[5].IsTileOccupied && !Board[6].IsTileOccupied &&
                rookTile.IsTileOccupied &&
                rookTile.Piece.IsFirstMove &&
-               !CalculateAttacksOnTile(6, Opponent.LegalMoves).Any() &&
+               !CalculateAttacksOnTile(6, opponentsLegals).Any() &&
                rookTile.Piece is Rook;
     }
 
-    protected override bool CanLongCastle()
+    protected override bool CanLongCastle(IEnumerable<Move> opponentsLegals)
     {
         Tile rookTile = Board[0];
         return !Board[1].IsTileOccupied && !Board[2].IsTileOccupied && !Board[3].IsTileOccupied &&
                rookTile.IsTileOccupied &&
                rookTile.Piece.IsFirstMove &&
-               !CalculateAttacksOnTile(2, Opponent.LegalMoves).Any() &&
+               !CalculateAttacksOnTile(2, opponentsLegals).Any() &&
                rookTile.Piece is Rook;
     }
 }

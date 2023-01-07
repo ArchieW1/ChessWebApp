@@ -18,10 +18,10 @@ public partial class Move
         IsFirstMove = movedPiece.IsFirstMove;
     }
     
-    protected Move(Board board, int destinationCoordinate)
+    protected Move(int destinationCoordinate)
     {
-        Board = board;
-        MovedPiece = null;
+        Board = Board.Builder.Build();
+        MovedPiece = new Empty(-1);
         DestinationCoordinate = destinationCoordinate;
         IsFirstMove = false;
     }

@@ -26,6 +26,8 @@ public sealed class Castle : Move
             throw new Exception("Must be king to castle.");
         }
         
+        Board.Builder.SetPiece(new Empty(MovedPiece.Position));
+        Board.Builder.SetPiece(new Empty(Rook.Position));
         Board.Builder.SetPiece(king.MovePiece(this));
         Board.Builder.SetPiece(new Rook(RookDestination, Rook.Alliance));
         Board.Builder.SetMoveMaker(Board.CurrentPlayer.Opponent.Alliance);

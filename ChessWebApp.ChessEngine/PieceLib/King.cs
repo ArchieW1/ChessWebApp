@@ -8,7 +8,6 @@ public sealed class King : Piece
 {
     private static readonly int[] CandidateMoveTransformations = {-9, -8, -7, -1, 1, 7, 8, 9};
     public bool IsCastled { get; }
-    public bool IsKingSideCastleCapable { get; }
 
     public King(int position, Alliance alliance, bool isFirstMove = true, bool isCastled = false) 
         : base(position, alliance, isFirstMove)
