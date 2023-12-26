@@ -1,0 +1,55 @@
+@inject IUserService _userService;
+@inject ILocalStorageService _browserStorage;
+
+@page "/"
+
+<div class="index-page">
+	<input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+	<label for="menu-icon"></label>
+	<nav class="nav"> 		
+		<ul class="pt-5">
+			<li><a href="/login">Login/Sign up</a></li>
+			<li><a href="/local-game">Local Game</a></li>
+			<li><a href="/ai-game-slt">AI Game</a></li>
+		</ul>
+	</nav>
+
+	@if (_isLoggedIn)
+	{
+		<div class="section-center">
+			<h1 class="mb-0">Welcome @_username</h1>
+		</div>
+	}
+	else
+	{
+		<div class="section-center">
+			<h1 class="mb-0">Chess</h1>
+		</div>
+	}
+</div>
+
+@code {
+
+	private string _username = default!;
+	private bool _isLoggedIn = false;
+
+	protected override async Task OnInitializedAsync()
+	{
+		_username = await _browserStorage.GetItemAsync<string>("username");
+		_isLoggedIn = await IsLoggedIn();
+	}
+
+	private async Task<bool> IsLoggedIn()
+	{
+		try
+		{
+			await _userService.GetAsync(_username);
+		}
+		catch (Exception)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+}

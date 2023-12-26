@@ -1,0 +1,19 @@
+@startuml
+class Board <<sealed>> <<partial>> {
+    + WhitePieces : IEnumerable<Piece> <<get>>
+    + BlackPieces : IEnumerable<Piece> <<get>>
+    + AllLegalMoves : IEnumerable<Move> <<get>>
+    + WhitePLayer : Player <<get>>
+    + BlackPlayer : Player <<get>>
+    + GetEnumerator() : IEnumerator<Tile>
+    + <<override>> ToString() : string
+    GetEnumerator() : IEnumerator
+    + {static} CreateStandardBoard() : Board
+}
+Board --> "WhitePieces" Piece
+Board --> "BlackPieces" Piece
+Board --> "AllLegalMoves" Move
+Board --> "CurrentPlayer" Player
+Board --> "WhitePlayer" Player
+Board --> "BlackPlayer" Player
+@enduml

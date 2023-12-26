@@ -1,0 +1,8 @@
+@startuml
+class Move <<partial>> {
+}
+class Builder <<static>> {
+    + {static} CreateMove(board:Board, currentCoordinate:int, destinationCoordinate:int) : Move
+}
+Move +- Builder
+@enduml

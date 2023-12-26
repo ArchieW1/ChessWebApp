@@ -1,0 +1,26 @@
+﻿.login-page{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 4%;
+    background-color: #1f2029;
+}
+.main{
+    width: 350px;
+    height: 500px;
+    background: red;
+    overflow: hidden;
+    background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+}
+#chk{
+    display: none;
+}

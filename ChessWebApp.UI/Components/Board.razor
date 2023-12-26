@@ -1,0 +1,15 @@
+﻿@using ChessWebApp.UI.Services
+@using ChessWebApp.ChessEngine.BoardLib
+@using ChessWebApp.ChessEngine
+
+<div class="chess-table" style=@($"flex-wrap: wrap{ReversedCss}")>
+    @foreach (Tile tile in BoardService.Board)
+    {
+        <PieceBox Tile=@tile 
+                  IsWhite=@IsPieceBoxWhite(tile.TileCoordinate) 
+                  IsSelected=@IsTileSelected(tile)
+                  IsLegalMove=@IsTileLegalMove(tile)
+                  Difficulty="@Difficulty"
+                  OnUpdate="StateHasChanged"/>
+    }
+</div>

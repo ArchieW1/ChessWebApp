@@ -1,0 +1,11 @@
+@startuml
+class MoveTransition <<sealed>> {
+    + MoveStatus : MoveStatus <<get>>
+    + Move : Move <<get>>
+    + Board : Board <<get>>
+    + MoveTransition(transitionBoard:Board, move:Move, moveStatus:MoveStatus)
+}
+MoveTransition -> "MoveStatus" MoveStatus
+MoveTransition -> "Move" Move
+MoveTransition --> "Board" Board
+@enduml

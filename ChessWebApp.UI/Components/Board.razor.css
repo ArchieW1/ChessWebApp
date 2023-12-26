@@ -1,0 +1,33 @@
+﻿.chess-table {
+    width: 80vh;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+
+    .chess-table {
+        height: 240px;
+        width: 240px;
+    }
+
+    .piece-box {
+        width: 30px;
+        height: 30px;
+    }
+
+    img.piece {
+        width: 25px;
+        height: 25px;
+    }
+
+    .chess-message .check-mate-message {
+        width: 150px;
+        top: calc(-15px + 50vh);
+        left: calc(-85px + 50vw);
+        font-size: 12px;
+        padding: 10px;
+    }
+}

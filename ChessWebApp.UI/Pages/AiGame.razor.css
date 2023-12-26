@@ -1,0 +1,32 @@
+* {
+    user-select: none;
+}
+
+.ai-game-page{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 4%;
+    background-color: #1f2029;
+}
+
+@media only screen and (min-device-width: 560px) and (max-device-width: 820px) and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+        padding: 50px 0;
+    }
+
+    .chess-message .check-mate-message {
+        width: 175px;
+        top: calc(35px + 50vh);
+        left: calc(-127.5px + 50vw);
+        font-size: 14px;
+        padding: 10px 40px;
+    }
+}

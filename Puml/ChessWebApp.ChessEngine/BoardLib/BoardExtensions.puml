@@ -1,0 +1,12 @@
+@startuml
+class BoardExtensions <<static>> {
+    + {static} IsValid(coordinate:int) : bool
+    + {static} ToColumn(coordinate:int) : Board.Utils.Column
+    + {static} ToRow(coordinate:int) : Board.Utils.Row
+    + {static} ToCoordinate(position:string) : int
+    + {static} ToPosition(coordinate:int) : string
+}
+class Board <<sealed>> <<partial>> {
+}
+Board - BoardExtensions
+@enduml

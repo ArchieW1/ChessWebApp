@@ -1,0 +1,15 @@
+@startuml
+class Board <<sealed>> <<partial>> {
+}
+class Builder <<static>> {
+    + {static} BoardConfig : IDictionary<int, Piece> <<get>>
+    + {static} NextMoveMaker : Alliance <<get>>
+    + {static} SetPiece(piece:Piece) : void
+    + {static} SetMoveMaker(alliance:Alliance) : void
+    + {static} Build() : Board
+    + {static} SetEnPassantPawn(pawn:Pawn) : void
+}
+Board +- Builder
+Builder --> "BoardConfig" Piece
+Builder --> "NextMoveMaker" Alliance
+@enduml

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="6.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.8" PrivateAssets="all" />
+    <PackageReference Include="MyBlazor.MangmentBrowserStorage" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChessWebApp.ChessEngine\ChessWebApp.ChessEngine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="obj\Debug" />
+  </ItemGroup>
+
+</Project>

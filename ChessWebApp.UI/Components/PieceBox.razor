@@ -1,0 +1,15 @@
+﻿@using ChessWebApp.UI.Services
+@using ChessWebApp.ChessEngine.PieceLib
+@using ChessWebApp.ChessEngine.MoveLib
+@using ChessWebApp.ChessEngine.BoardLib
+
+
+
+<div id="@Tile.TileCoordinate" class="piece-box @_colour-box @SelectedCss @LegalMoveCss @IllegalMoveCss @CheckCss" @onclick="HandleLeftClick"
+     @oncontextmenu="HandleRightClick" @oncontextmenu:preventDefault="true">
+    @if (Tile.Piece is not Empty)
+    {
+        <img class="piece" src=@($"img/{PieceColour}-{PieceSymbol}.png") alt=@PieceSymbol/>
+    }
+    <span class="piece-box-text">@Tile.TileCoordinate.ToPosition()</span>
+</div>

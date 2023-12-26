@@ -1,0 +1,11 @@
+@startuml
+abstract class Piece {
+    + Alliance : Alliance <<get>>
+    + Position : int <<get>>
+    + IsFirstMove : bool <<get>>
+    + <<override>> ToString() : string
+    + {abstract} CalculateLegalMoves(board:Board) : IEnumerable<Move>
+    + {abstract} MovePiece(move:Move) : Piece
+}
+Piece -> "Alliance" Alliance
+@enduml

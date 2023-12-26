@@ -1,0 +1,7 @@
+@startuml
+class Bishop <<sealed>> {
+    + Bishop(position:int, alliance:Alliance, isFirstMove:bool)
+    + <<override>> MovePiece(move:Move) : Bishop
+}
+DirectionalPiece <|- Bishop
+@enduml

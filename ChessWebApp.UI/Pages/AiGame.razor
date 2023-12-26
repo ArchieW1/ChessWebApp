@@ -1,0 +1,23 @@
+@page "/ai-game/{difficulty}"
+
+<div class="ai-game-page">
+    <Board AiGame Difficulty="@Difficulty"/>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? Difficulty { get; set; }
+    
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        if (Difficulty != "easy" && Difficulty != "medium" && Difficulty != "hard")
+        {
+            NavigationManager.NavigateTo("/invalid-difficulty");
+        }
+    }
+
+}

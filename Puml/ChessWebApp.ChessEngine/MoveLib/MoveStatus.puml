@@ -1,0 +1,7 @@
+@startuml
+enum MoveStatus {
+    Done= 0,
+    Illegal,
+    LeavesPlayerInCheck,
+}
+@enduml

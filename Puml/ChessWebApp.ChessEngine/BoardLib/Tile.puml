@@ -1,0 +1,10 @@
+@startuml
+class Tile <<sealed>> {
+    + Piece : Piece <<get>>
+    + IsTileOccupied : bool <<get>>
+    + TileCoordinate : int <<get>>
+    + Tile(tileCoordinate:int, piece:Piece)
+    + <<override>> ToString() : string
+}
+Tile --> "Piece" Piece
+@enduml

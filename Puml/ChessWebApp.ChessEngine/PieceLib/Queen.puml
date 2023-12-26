@@ -1,0 +1,7 @@
+@startuml
+class Queen <<sealed>> {
+    + Queen(position:int, alliance:Alliance, isFirstMove:bool)
+    + <<override>> MovePiece(move:Move) : Queen
+}
+DirectionalPiece <|- Queen
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class Move <<partial>> {
+    + MovedPiece : Piece <<get>>
+    + DestinationCoordinate : int <<get>>
+    + IsFirstMove : bool <<get>>
+    + Move(board:Board, movedPiece:Piece, destinationCoordinate:int)
+    + <<virtual>> Execute() : Board
+    + KeepStateExcludingPieces(excludePieces:Piece[]) : void
+}
+Move --> "MovedPiece" Piece
+@enduml

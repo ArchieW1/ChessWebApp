@@ -1,0 +1,6 @@
+@startuml
+abstract class DirectionalPiece {
+    + <<override>> CalculateLegalMoves(board:Board) : IEnumerable<Move>
+}
+Piece <|- DirectionalPiece
+@enduml

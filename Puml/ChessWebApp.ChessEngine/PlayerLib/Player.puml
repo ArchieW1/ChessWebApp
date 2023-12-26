@@ -1,0 +1,19 @@
+@startuml
+abstract class Player {
+    + {abstract} Alliance : Alliance <<get>>
+    + {abstract}  ActivePieces : IEnumerable<Piece> <<get>>
+    + {abstract}  Opponent : Player <<get>>
+    + King : King <<get>>
+    + LegalMoves : IEnumerable<Move> <<get>>
+    + IsInCheck : bool <<get>>
+    + IsInCheckmate : bool <<get>>
+    + IsInStalemate : bool <<get>>
+    + IsLegalMove(move:Move) : bool
+    + MakeMove(move:Move) : MoveTransition
+}
+Player --> "Alliance" Alliance
+Player --> "ActivePieces" Piece
+Player -> "Opponent" Player
+Player --> "King" King
+Player --> "LegalMoves" Move
+@enduml

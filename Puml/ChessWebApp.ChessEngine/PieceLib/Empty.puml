@@ -1,0 +1,8 @@
+@startuml
+class Empty <<sealed>> {
+    + Empty(position:int)
+    + <<override>> CalculateLegalMoves(board:Board) : IEnumerable<Move>
+    + <<override>> MovePiece(move:Move) : Empty
+}
+Piece <|- Empty
+@enduml

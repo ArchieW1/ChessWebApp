@@ -1,0 +1,33 @@
+@startuml
+top to bottom direction
+
+!include .\\.\ChessWebApp.ChessEngine\Alliance.puml
+!include .\\.\ChessWebApp.ChessEngine\AllianceExtensions.puml
+!include .\\.\ChessWebApp.ChessEngine\BoardLib\Board.Builder.puml
+!include .\\.\ChessWebApp.ChessEngine\BoardLib\Board.puml
+!include .\\.\ChessWebApp.ChessEngine\BoardLib\Board.Utils.puml
+!include .\\.\ChessWebApp.ChessEngine\BoardLib\BoardExtensions.puml
+!include .\\.\ChessWebApp.ChessEngine\BoardLib\Tile.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\Castle.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\EmptyMove.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\Move.Builder.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\Move.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\MoveStatus.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\MoveTransition.puml
+!include .\\.\ChessWebApp.ChessEngine\MoveLib\PawnMove.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Bishop.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\DirectionalPiece.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Empty.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\King.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Knight.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Pawn.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Piece.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Queen.puml
+!include .\\.\ChessWebApp.ChessEngine\PieceLib\Rook.puml
+!include .\\.\ChessWebApp.ChessEngine\PlayerLib\BlackPlayer.puml
+!include .\\.\ChessWebApp.ChessEngine\PlayerLib\Player.puml
+!include .\\.\ChessWebApp.ChessEngine\PlayerLib\WhitePlayer.puml
+!include .\\.\ChessWebApp.ChessEngine\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.puml
+!include .\\.\ChessWebApp.ChessEngine\obj\Debug\net6.0\ChessWebApp.ChessEngine.AssemblyInfo.puml
+!include .\\.\ChessWebApp.ChessEngine\obj\Debug\net6.0\ChessWebApp.ChessEngine.GlobalUsings.g.puml
+@enduml

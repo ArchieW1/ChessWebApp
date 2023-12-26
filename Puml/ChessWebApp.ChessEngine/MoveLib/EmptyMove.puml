@@ -1,0 +1,7 @@
+@startuml
+class EmptyMove <<sealed>> {
+    + EmptyMove()
+    + <<override>> Execute() : Board
+}
+Move <|- EmptyMove
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class AllianceExtensions <<static>> {
+    + {static} GetDirection(alliance:Alliance) : int
+    + {static} ChoosePlayer(alliance:Alliance, whitePlayer:Player, blackPlayer:Player) : Player
+}
+enum Alliance {
+}
+Alliance - AllianceExtensions
+@enduml

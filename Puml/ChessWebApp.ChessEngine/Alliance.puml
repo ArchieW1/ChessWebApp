@@ -1,0 +1,7 @@
+@startuml
+enum Alliance {
+    None= 0,
+    White,
+    Black,
+}
+@enduml

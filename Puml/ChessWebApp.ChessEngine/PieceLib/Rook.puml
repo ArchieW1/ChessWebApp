@@ -1,0 +1,7 @@
+@startuml
+class Rook <<sealed>> {
+    + Rook(position:int, alliance:Alliance, isFirstMove:bool)
+    + <<override>> MovePiece(move:Move) : Rook
+}
+DirectionalPiece <|- Rook
+@enduml

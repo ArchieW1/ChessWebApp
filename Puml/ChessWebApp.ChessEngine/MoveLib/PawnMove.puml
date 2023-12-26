@@ -1,0 +1,7 @@
+@startuml
+class PawnMove <<sealed>> {
+    + PawnMove(board:Board, movedPiece:Piece, destinationCoordinate:int)
+    + <<override>> Execute() : Board
+}
+Move <|- PawnMove
+@enduml

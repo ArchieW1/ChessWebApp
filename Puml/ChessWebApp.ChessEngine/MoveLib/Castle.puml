@@ -1,0 +1,11 @@
+@startuml
+class Castle <<sealed>> {
+    + Rook : Rook <<get>>
+    + RookStart : int <<get>>
+    + RookDestination : int <<get>>
+    + Castle(board:Board, movedPiece:Piece, destinationCoordinate:int, rook:Rook, rookStart:int, rookDestination:int)
+    + <<override>> Execute() : Board
+}
+Move <|- Castle
+Castle --> "Rook" Rook
+@enduml

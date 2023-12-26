@@ -1,0 +1,9 @@
+@startuml
+class WhitePlayer <<sealed>> {
+    + Alliance : Alliance <<get>>
+    + ActivePieces : IEnumerable<Piece> <<get>>
+    + Opponent : Player <<get>>
+    + WhitePlayer(board:Board, legalMoves:IEnumerable<Move>, opponentsMoves:IEnumerable<Move>)
+}
+Player <|- WhitePlayer
+@enduml

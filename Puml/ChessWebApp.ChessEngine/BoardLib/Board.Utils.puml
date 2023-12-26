@@ -1,0 +1,32 @@
+@startuml
+class Board <<sealed>> <<partial>> {
+}
+class Utils <<static>> {
+    + <<const>> NumberOfTiles : int = 64
+    + <<const>> NumberOfColumns : int = 8
+    + <<const>> NumberOfRows : int = 8
+}
+enum Row {
+    First= 0,
+    Second,
+    Third,
+    Forth,
+    Fifth,
+    Sixth,
+    Seventh,
+    Eighth,
+}
+enum Column {
+    First= 0,
+    Second,
+    Third,
+    Forth,
+    Fifth,
+    Sixth,
+    Seventh,
+    Eighth,
+}
+Board +- Utils
+Utils +- Row
+Utils +- Column
+@enduml

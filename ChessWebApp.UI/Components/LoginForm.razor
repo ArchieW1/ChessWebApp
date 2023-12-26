@@ -1,0 +1,41 @@
+﻿@inject IUserService _userService;
+@inject ILocalStorageService _browserStorage
+@inject NavigationManager _navManager;
+
+<div class="login">
+	<EditForm Model="@_userLoginModel" OnValidSubmit="OnValidLoginSubmitAsync">
+		<DataAnnotationsValidator/>
+		
+		@if (IsConnected)
+		{
+			<label for="chk" aria-hidden="true">Login</label>
+		}
+		else
+		{
+			<label aria-hidden="true">Login</label>
+		}
+		
+		@if (_loginFailed)
+		{
+			<div class="validation-container">
+				<p style="color: red">User name or password was invalid.</p>
+			</div>
+		}
+		
+        <div class="input-container">
+            <InputText class="input-text" type="text" @bind-Value="_userLoginModel.Username" placeholder="User name"/>
+        </div>
+        <div class="validation-container">
+            <ValidationMessage For="() => _userLoginModel.Username"/>
+        </div>
+        
+        <div class="input-container">
+            <InputText class="input-text" type="password" @bind-Value="_userLoginModel.Password" placeholder="Password"/>
+        </div>
+        <div class="validation-container">
+            <ValidationMessage For="() => _userLoginModel.Password"/>
+        </div>
+        
+        <button type="submit">Login</button>
+    </EditForm>
+</div>

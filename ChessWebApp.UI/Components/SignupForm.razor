@@ -1,0 +1,51 @@
+﻿@inject IUserService _userService
+
+<div class="signup">
+	<EditForm Model="@_userSignupModel" OnValidSubmit="OnValidSignupSubmitAsync">
+		@if (IsConnected)
+        {
+        	<label for="chk" aria-hidden="true">Sign up</label>
+        }
+        else
+        {
+        	<label aria-hidden="true">Sign up</label>
+        }
+		
+		@if (_signupFailed)
+        {
+            <div class="validation-container">
+                <p style="color: red">User name is taken.</p>
+            </div>
+        }
+		@if (_signupSuccess)
+		{
+			<div class="validation-container">
+				<p style="color: green">Account created.</p>
+			</div>
+		}
+		
+		<DataAnnotationsValidator/>
+		<div class="input-container">
+			<InputText class="input-text" type="text" @bind-Value="_userSignupModel.Username" placeholder="User name"/>
+		</div>
+		<div class="validation-container">
+            <ValidationMessage For="() => _userSignupModel.Username"/>
+        </div>
+		
+		<div class="input-container">
+			<InputText class="input-text" type="email" @bind-Value="_userSignupModel.Email" placeholder="Email"/>
+		</div>
+		<div class="validation-container">
+            <ValidationMessage For="() => _userSignupModel.Email"/>
+        </div>
+		
+		<div class="input-container">
+			<InputText class="input-text" type="password" @bind-Value="_userSignupModel.Password" placeholder="Password"/>
+		</div>
+		<div class="validation-container">
+            <ValidationMessage For="() => _userSignupModel.Password"/>
+        </div>
+		
+		<button type="submit">Sign Up</button>
+	</EditForm>
+</div>

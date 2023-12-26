@@ -1,0 +1,9 @@
+@startuml
+class King <<sealed>> {
+    + IsCastled : bool <<get>>
+    + King(position:int, alliance:Alliance, isFirstMove:bool, isCastled:bool)
+    + <<override>> CalculateLegalMoves(board:Board) : IEnumerable<Move>
+    + <<override>> MovePiece(move:Move) : King
+}
+Piece <|- King
+@enduml
